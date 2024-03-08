@@ -25,12 +25,84 @@ library(gt)
 library(MASS)
 library(patchwork)
 library(moderndive)
+library(stringr)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+obesity <- read.csv("DAProject4.csv")
 ```
 
 # Introduction {#intro}
 
 # Exploratory Analysis {#exploranalysis}
 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-bar1
+#| fig-cap: Relationship between Obesiety and Year 
+#| fig-align: center
+#| fig-height: 3.5
+ggplot(obesity, aes(x = Year, fill=Obese)) + geom_bar(position = 'dodge') +
+  labs(y = "Count")
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-bar2
+#| fig-cap: Relationship between Obesity by Age Group and Sex  
+#| fig-align: center
+#| fig-height: 3.5
+obesity_sub <- obesity |> dplyr::filter(Obese=="Yes")
+p1 <- ggplot(obesity_sub, aes(x = AgeGroup)) + geom_bar(fill = "turquoise3") +
+      labs(y = "Count")
+
+p2 <- ggplot(obesity, aes(x = Sex, fill = Obese)) + geom_bar(position = 'dodge') + labs(y = "Count")
+
+p1+p2+plot_layout(ncol = 2)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-bar3
+#| fig-cap: Relationship between Obesity by Lifestyle Factors
+#| fig-align: center
+#| fig-height: 3.5
+p1 <- ggplot(obesity, aes(x = Fruit, fill=Obese)) + geom_bar(position = 'dodge') +
+  labs(y = "Count")
+
+p2 <- ggplot(obesity, aes(x = Veg, fill=Obese)) + geom_bar(position = 'dodge') +
+  labs(y = "Count")
+
+p1+p2+plot_layout(ncol = 2)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-bar4
+#| fig-cap: Relationship between Obesiety and Employment 
+#| fig-align: center
+#| fig-height: 3.5
+ggplot(obesity_sub, aes(x = Employment)) + 
+         geom_bar(fill = "turquoise3") +
+  labs(y = "Count") +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+```
+
 # Formal Analysis {#formalanalysis}
+
+```{r}
+
+```
 
 # Conclusion {#conclusion}
