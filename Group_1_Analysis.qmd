@@ -32,7 +32,7 @@ library(stringr)
 #| echo: false
 #| warning: false
 #| message: false
-obesity <- read.csv("DAProject4.csv")
+obesity <- read.csv("DAProject3.csv")
 ```
 
 # Introduction {#intro}
