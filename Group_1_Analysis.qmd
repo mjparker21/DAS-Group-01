@@ -44,7 +44,7 @@ obesity <- read.csv("DAProject3.csv")
 #| warning: false
 #| message: false
 #| label: fig-bar1
-#| fig-cap: Relationship between Obesiety and Year 
+#| fig-cap: Relationship between Obesity and Year.
 #| fig-align: center
 #| fig-height: 3.5
 ggplot(obesity, aes(x = Year, fill=Obese)) + geom_bar(position = 'dodge') +
@@ -56,7 +56,7 @@ ggplot(obesity, aes(x = Year, fill=Obese)) + geom_bar(position = 'dodge') +
 #| warning: false
 #| message: false
 #| label: fig-bar2
-#| fig-cap: Relationship between Obesity by Age Group and Sex  
+#| fig-cap: Obesity by Age Group and Sex.
 #| fig-align: center
 #| fig-height: 3.5
 obesity_sub <- obesity |> dplyr::filter(Obese=="Yes")
@@ -73,7 +73,7 @@ p1+p2+plot_layout(ncol = 2)
 #| warning: false
 #| message: false
 #| label: fig-bar3
-#| fig-cap: Relationship between Obesity by Lifestyle Factors
+#| fig-cap: Relationship between Obesity and Lifestyle Factors.
 #| fig-align: center
 #| fig-height: 3.5
 p1 <- ggplot(obesity, aes(x = Fruit, fill=Obese)) + geom_bar(position = 'dodge') +
@@ -90,7 +90,7 @@ p1+p2+plot_layout(ncol = 2)
 #| warning: false
 #| message: false
 #| label: fig-bar4
-#| fig-cap: Relationship between Obesiety and Employment 
+#| fig-cap: Relationship between Obesity and Socio-economic Status. 
 #| fig-align: center
 #| fig-height: 3.5
 ggplot(obesity_sub, aes(x = Employment)) + 
