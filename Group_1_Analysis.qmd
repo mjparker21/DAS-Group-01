@@ -39,6 +39,10 @@ obesity <- read.csv("DAProject3.csv")
 
 # Exploratory Analysis {#exploranalysis}
 
+@fig-bar1 displays the relationship between variables `Obesity` and `Year` revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From @fig-bar1, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller count in 2016 compared to the previous three years, but not much difference in the data from 2013 to 2015.
+
+The count for no obesity has remained way above the count for obesity over the given years.
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -50,6 +54,10 @@ obesity <- read.csv("DAProject3.csv")
 ggplot(obesity, aes(x = Year, fill=Obese)) + geom_bar(position = 'dodge') +
   labs(y = "Count")
 ```
+
+In @fig-bar2 we observe the relationships between `Obesity` and `AgeGroup`, and `Obesity` and `Sex`. It is revealed that the obesity count is highest in the 55-64 age group and decreases as age decreases, as well as for an increase in age. The lowest obesity number is counted in the 16-24 age group.
+
+We can also see in @fig-bar2 that the obesity count appears slightly higher in females than in males.
 
 ```{r}
 #| echo: false
@@ -68,6 +76,8 @@ p2 <- ggplot(obesity, aes(x = Sex, fill = Obese)) + geom_bar(position = 'dodge')
 p1+p2+plot_layout(ncol = 2)
 ```
 
+We also observe the relationship between `Obesity` and different lifestyle factors (whether or not the individual consumes the recommended daily intake of fruit or vegetables) in @fig-bar3. Obesity seems to be more prevalent in those who did consume the recommended daily intake of fruit or veg compared to those who didn't.
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -84,6 +94,8 @@ p2 <- ggplot(obesity, aes(x = Veg, fill=Obese)) + geom_bar(position = 'dodge') +
 
 p1+p2+plot_layout(ncol = 2)
 ```
+
+Finally, the relationship between `Obesity` and `Employment` is revealed in @fig-bar4. The obesity count is clearly highest in employed individuals, followed by retirees, while the other factors appear to have very low obesity counts.
 
 ```{r}
 #| echo: false
