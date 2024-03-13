@@ -156,6 +156,16 @@ Full model:
 
 ```{r}
 
+# test interaction model AIC
+
+# full.int.model <- glm(Obese ~ Sex * Veg + AgeGroup * Veg + Employment * Veg + AgeGroup * Employment + AgeGroup * Sex + Sex * Employment, family = 'binomial', data = obesity)
+# full.int.model <- glm(Obese ~ .^2, data = obesity, family = 'binomial')
+
+# stepAIC(full.int.model, direction = "both")
+
+
+# final model according to AIC:
+
 final.model <- glm(Obese ~ Veg + Sex * AgeGroup + Sex * Employment, family = 'binomial', data = obesity)
 
 summary(final.model)
