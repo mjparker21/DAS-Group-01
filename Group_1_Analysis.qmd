@@ -1,5 +1,5 @@
 ---
-title: "An Analysis of Obesity Prevelance in Scotland between 2013 and 2016"
+title: "Analysis of Obesiety Prevelance in Scotland (2013-2016)"
 author: "Group 1 "
 execute: 
   echo: false
@@ -40,9 +40,9 @@ obesity <- read.csv("DAProject3.csv")
 
 # Exploratory Analysis {#exploranalysis}
 
-@fig-bar1 displays the relationship between variables `Obesity` and `Year` revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From @fig-bar1, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller count in 2016 compared to the previous three years, but not much difference in the data from 2013 to 2015.
+@fig-bar1 displays the relationship between variables `Obesity` and `Year` revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From @fig-bar1, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller proportion in 2016 compared to the previous three years, but not much difference in the data from 2013 to 2015.
 
-The count for no obesity has remained way above the count for obesity over the given years.
+The proportion of no obesity has remained way above the proportion for obesity over the given years.
 
 ```{r}
 #| echo: false
@@ -52,13 +52,14 @@ The count for no obesity has remained way above the count for obesity over the g
 #| fig-cap: Relationship between Obesity and Year.
 #| fig-align: center
 #| fig-height: 3.5
-ggplot(obesity, aes(x = Year, fill=Obese)) + geom_bar(position = 'dodge') +
-  labs(y = "Count")
+ggplot(obesity, aes(x = Year, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), stat = "count", position = "dodge") +
+  labs(y = "Proportion", fill = "Obese")
 ```
 
-In @fig-bar2 we observe the relationships between `Obesity` and `AgeGroup`, and `Obesity` and `Sex`. It is revealed that the obesity count is highest in the 55-64 age group and decreases as age decreases, as well as for an increase in age. The lowest obesity number is counted in the 16-24 age group.
+In @fig-bar2 we observe the relationships between `Obesity` and `AgeGroup`, and `Obesity` and `Sex`. It is revealed that the obesity proportion is highest in the 55-64 age group and decreases as age decreases, as well as for an increase in age. The lowest obesity proportion is counted in the 16-24 age group.
 
-We can also see in @fig-bar2 that the obesity count appears slightly higher in females than in males.
+We can also see in @fig-bar2 that obesity appears slightly higher in females than in males.
 
 ```{r}
 #| echo: false
@@ -69,10 +70,15 @@ We can also see in @fig-bar2 that the obesity count appears slightly higher in f
 #| fig-align: center
 #| fig-height: 3.5
 obesity_sub <- obesity |> dplyr::filter(Obese=="Yes")
-p1 <- ggplot(obesity_sub, aes(x = AgeGroup)) + geom_bar(fill = "turquoise3") +
-      labs(y = "Count")
 
-p2 <- ggplot(obesity, aes(x = Sex, fill = Obese)) + geom_bar(position = 'dodge') + labs(y = "Count")
+p1 <- ggplot(obesity_sub, aes(x = AgeGroup, group = Obese)) + 
+      geom_bar(aes(y = after_stat(prop)), fill = "turquoise3", stat = "count", position = "dodge") +
+      labs(y = "Proportion", fill = "Obese")
+
+p2 <- ggplot(obesity, aes(x = Sex, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), stat = "count", position = "dodge") +
+  labs(y = "Proportion", fill = "Obese")
+
 
 p1+p2+plot_layout(ncol = 2)
 ```
@@ -87,16 +93,21 @@ We also observe the relationship between `Obesity` and different lifestyle facto
 #| fig-cap: Relationship between Obesity and Lifestyle Factors.
 #| fig-align: center
 #| fig-height: 3.5
-p1 <- ggplot(obesity, aes(x = Fruit, fill=Obese)) + geom_bar(position = 'dodge') +
-  labs(y = "Count")
 
-p2 <- ggplot(obesity, aes(x = Veg, fill=Obese)) + geom_bar(position = 'dodge') +
-  labs(y = "Count")
+# fruit
+f <- ggplot(obesity, aes(x = Fruit, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), stat = "count", position = "dodge") +
+  labs(y = "Proportion", fill = "Obese")
 
-p1+p2+plot_layout(ncol = 2)
+# veg
+v <- ggplot(obesity, aes(x = Veg, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), stat = "count", position = "dodge") +
+  labs(y = "Proportion", fill = "Obese")
+
+f+v+plot_layout(ncol = 2)
 ```
 
-Finally, the relationship between `Obesity` and `Employment` is revealed in @fig-bar4. The obesity count is clearly highest in employed individuals, followed by retirees, while the other factors appear to have very low obesity counts.
+Finally, the relationship between `Obesity` and `Employment` is revealed in @fig-bar4. The obesity proportion is clearly highest in employed individuals, followed by retirees, while the other factors appear to have very low proportions of obesity.
 
 ```{r}
 #| echo: false
@@ -106,15 +117,20 @@ Finally, the relationship between `Obesity` and `Employment` is revealed in @fig
 #| fig-cap: Relationship between Obesity and Socio-economic Status. 
 #| fig-align: center
 #| fig-height: 3.5
-ggplot(obesity_sub, aes(x = Employment)) + 
-         geom_bar(fill = "turquoise3") +
-  labs(y = "Count") +
+
+ggplot(obesity_sub, aes(x = Employment, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), fill = "turquoise3", stat = "count", position = "dodge") +
+  labs(y = "Proportion") +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
 ```
 
 # Formal Analysis {#formalanalysis}
 
 ```{r}
+#| echo: false
+#| warning: false
+#| message: false
 
 # change to factors
 obesity$AgeGroup <- as.factor(obesity$AgeGroup)
@@ -124,6 +140,22 @@ obesity$Employment <- as.factor(obesity$Employment)
 obesity$Veg <- as.factor(obesity$Veg)
 obesity$Fruit <- as.factor(obesity$Fruit)
 obesity$Obese <- as.factor(obesity$Obese)
+```
+
+To answer our first question of interest we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in the following output match our assumptions from @fig-bar1: we can conclude that year has no significant effect on obesity in Scotland.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: tbl-output
+
+summary(glm(Obese ~ Year, data=obesity, family = "binomial"))
+```
+
+Full model:
+
+```{r}
 
 final.model <- glm(Obese ~ Veg + Sex * AgeGroup + Sex * Employment, family = 'binomial', data = obesity)
 
