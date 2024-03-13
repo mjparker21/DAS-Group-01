@@ -116,6 +116,18 @@ ggplot(obesity_sub, aes(x = Employment)) +
 
 ```{r}
 
+# change to factors
+obesity$AgeGroup <- as.factor(obesity$AgeGroup)
+obesity$Year <- as.factor(obesity$Year)
+obesity$Sex <- as.factor(obesity$Sex)
+obesity$Employment <- as.factor(obesity$Employment)
+obesity$Veg <- as.factor(obesity$Veg)
+obesity$Fruit <- as.factor(obesity$Fruit)
+obesity$Obese <- as.factor(obesity$Obese)
+
+final.model <- glm(Obese ~ Veg + Sex * AgeGroup + Sex * Employment, family = 'binomial', data = obesity)
+
+summary(final.model)
 ```
 
 # Conclusion {#conclusion}

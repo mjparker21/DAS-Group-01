@@ -3065,6 +3065,166 @@ vertical-align: -.125em;
 </section>
 <section id="formalanalysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Formal Analysis</h1>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = Obese ~ Veg + Sex * AgeGroup + Sex * Employment, 
+    family = &quot;binomial&quot;, data = obesity)
+
+Coefficients:
+                                                                         Estimate
+(Intercept)                                                              -1.18917
+VegYes                                                                   -0.16572
+SexMale                                                                  -0.67535
+AgeGroup25-34                                                             0.30818
+AgeGroup35-44                                                             0.51347
+AgeGroup45-54                                                             0.62732
+AgeGroup55-64                                                             0.62519
+AgeGroup65-74                                                             0.82787
+AgeGroup75+                                                               0.62171
+EmploymentIn full-time education                                         -0.37471
+EmploymentIn paid employment, self-employed or on gov&#39;t training         -0.08474
+EmploymentLooking after home/family                                       0.30639
+EmploymentLooking for/intending to look for paid work                     0.46082
+EmploymentPerm unable to work                                             0.56474
+EmploymentRetired                                                        -0.04673
+SexMale:AgeGroup25-34                                                     0.32377
+SexMale:AgeGroup35-44                                                     0.35437
+SexMale:AgeGroup45-54                                                     0.52414
+SexMale:AgeGroup55-64                                                     0.74121
+SexMale:AgeGroup65-74                                                     0.45992
+SexMale:AgeGroup75+                                                       0.11185
+SexMale:EmploymentIn full-time education                                  0.23297
+SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training  0.13422
+SexMale:EmploymentLooking after home/family                               0.46427
+SexMale:EmploymentLooking for/intending to look for paid work            -0.43369
+SexMale:EmploymentPerm unable to work                                    -0.25679
+SexMale:EmploymentRetired                                                 0.23855
+                                                                         Std. Error
+(Intercept)                                                                 0.20287
+VegYes                                                                      0.04452
+SexMale                                                                     0.32910
+AgeGroup25-34                                                               0.13333
+AgeGroup35-44                                                               0.13138
+AgeGroup45-54                                                               0.12960
+AgeGroup55-64                                                               0.13417
+AgeGroup65-74                                                               0.15922
+AgeGroup75+                                                                 0.17287
+EmploymentIn full-time education                                            0.22083
+EmploymentIn paid employment, self-employed or on gov&#39;t training            0.16880
+EmploymentLooking after home/family                                         0.19555
+EmploymentLooking for/intending to look for paid work                       0.21534
+EmploymentPerm unable to work                                               0.19875
+EmploymentRetired                                                           0.18821
+SexMale:AgeGroup25-34                                                       0.21810
+SexMale:AgeGroup35-44                                                       0.21402
+SexMale:AgeGroup45-54                                                       0.21037
+SexMale:AgeGroup55-64                                                       0.21420
+SexMale:AgeGroup65-74                                                       0.24967
+SexMale:AgeGroup75+                                                         0.27270
+SexMale:EmploymentIn full-time education                                    0.36090
+SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training    0.27830
+SexMale:EmploymentLooking after home/family                                 0.43726
+SexMale:EmploymentLooking for/intending to look for paid work               0.34220
+SexMale:EmploymentPerm unable to work                                       0.31935
+SexMale:EmploymentRetired                                                   0.30437
+                                                                         z value
+(Intercept)                                                               -5.862
+VegYes                                                                    -3.722
+SexMale                                                                   -2.052
+AgeGroup25-34                                                              2.311
+AgeGroup35-44                                                              3.908
+AgeGroup45-54                                                              4.841
+AgeGroup55-64                                                              4.660
+AgeGroup65-74                                                              5.199
+AgeGroup75+                                                                3.596
+EmploymentIn full-time education                                          -1.697
+EmploymentIn paid employment, self-employed or on gov&#39;t training          -0.502
+EmploymentLooking after home/family                                        1.567
+EmploymentLooking for/intending to look for paid work                      2.140
+EmploymentPerm unable to work                                              2.841
+EmploymentRetired                                                         -0.248
+SexMale:AgeGroup25-34                                                      1.485
+SexMale:AgeGroup35-44                                                      1.656
+SexMale:AgeGroup45-54                                                      2.491
+SexMale:AgeGroup55-64                                                      3.460
+SexMale:AgeGroup65-74                                                      1.842
+SexMale:AgeGroup75+                                                        0.410
+SexMale:EmploymentIn full-time education                                   0.646
+SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training   0.482
+SexMale:EmploymentLooking after home/family                                1.062
+SexMale:EmploymentLooking for/intending to look for paid work             -1.267
+SexMale:EmploymentPerm unable to work                                     -0.804
+SexMale:EmploymentRetired                                                  0.784
+                                                                         Pr(&gt;|z|)
+(Intercept)                                                              4.58e-09
+VegYes                                                                   0.000197
+SexMale                                                                  0.040161
+AgeGroup25-34                                                            0.020815
+AgeGroup35-44                                                            9.30e-05
+AgeGroup45-54                                                            1.29e-06
+AgeGroup55-64                                                            3.17e-06
+AgeGroup65-74                                                            2.00e-07
+AgeGroup75+                                                              0.000323
+EmploymentIn full-time education                                         0.089730
+EmploymentIn paid employment, self-employed or on gov&#39;t training         0.615639
+EmploymentLooking after home/family                                      0.117157
+EmploymentLooking for/intending to look for paid work                    0.032361
+EmploymentPerm unable to work                                            0.004490
+EmploymentRetired                                                        0.803916
+SexMale:AgeGroup25-34                                                    0.137670
+SexMale:AgeGroup35-44                                                    0.097771
+SexMale:AgeGroup45-54                                                    0.012721
+SexMale:AgeGroup55-64                                                    0.000539
+SexMale:AgeGroup65-74                                                    0.065455
+SexMale:AgeGroup75+                                                      0.681690
+SexMale:EmploymentIn full-time education                                 0.518584
+SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training 0.629600
+SexMale:EmploymentLooking after home/family                              0.288333
+SexMale:EmploymentLooking for/intending to look for paid work            0.205025
+SexMale:EmploymentPerm unable to work                                    0.421346
+SexMale:EmploymentRetired                                                0.433202
+                                                                            
+(Intercept)                                                              ***
+VegYes                                                                   ***
+SexMale                                                                  *  
+AgeGroup25-34                                                            *  
+AgeGroup35-44                                                            ***
+AgeGroup45-54                                                            ***
+AgeGroup55-64                                                            ***
+AgeGroup65-74                                                            ***
+AgeGroup75+                                                              ***
+EmploymentIn full-time education                                         .  
+EmploymentIn paid employment, self-employed or on gov&#39;t training            
+EmploymentLooking after home/family                                         
+EmploymentLooking for/intending to look for paid work                    *  
+EmploymentPerm unable to work                                            ** 
+EmploymentRetired                                                           
+SexMale:AgeGroup25-34                                                       
+SexMale:AgeGroup35-44                                                    .  
+SexMale:AgeGroup45-54                                                    *  
+SexMale:AgeGroup55-64                                                    ***
+SexMale:AgeGroup65-74                                                    .  
+SexMale:AgeGroup75+                                                         
+SexMale:EmploymentIn full-time education                                    
+SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training    
+SexMale:EmploymentLooking after home/family                                 
+SexMale:EmploymentLooking for/intending to look for paid work               
+SexMale:EmploymentPerm unable to work                                       
+SexMale:EmploymentRetired                                                   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 17222  on 14016  degrees of freedom
+Residual deviance: 16855  on 13990  degrees of freedom
+AIC: 16909
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
 </section>
 <section id="conclusion" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Conclusion</h1>
