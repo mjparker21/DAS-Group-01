@@ -1,5 +1,5 @@
 ---
-title: "Analysis of Obesiety Prevelance in Scotland (2013-2016)"
+title: "An Analysis of Obesity Prevelance in Scotland (2013-2016)"
 author: "Group 1 "
 execute: 
   echo: false
