@@ -148,7 +148,6 @@ To answer our first question of interest we produce a logistic regression model 
 #| echo: false
 #| warning: false
 #| message: false
-#| label: tbl-output
 
 summary(glm(Obese ~ Year, data=obesity, family = "binomial"))
 ```

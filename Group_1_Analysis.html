@@ -3066,12 +3066,8 @@ vertical-align: -.125em;
 <section id="formalanalysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Formal Analysis</h1>
 <p>To answer our first question of interest we produce a logistic regression model for <code>Obesity</code> by <code>Year</code>. The large p-values shown in the following output match our assumptions from <a href="#fig-bar1">Figure 1</a>: we can conclude that year has no significant effect on obesity in Scotland.</p>
-<div id="tbl-output" class="cell tbl-parent quarto-layout-panel anchored">
-<div class="panel-caption table-caption">
-<p><strong>?(caption)</strong></p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
 glm(formula = Obese ~ Year, family = &quot;binomial&quot;, data = obesity)
@@ -3092,7 +3088,6 @@ Residual deviance: 17222  on 14013  degrees of freedom
 AIC: 17230
 
 Number of Fisher Scoring iterations: 4</code></pre>
-</div>
 </div>
 </div>
 <p>Full model:</p>
