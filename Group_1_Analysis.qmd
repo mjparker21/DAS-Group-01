@@ -115,6 +115,9 @@ ggplot(obesity_sub, aes(x = Employment)) +
 # Formal Analysis {#formalanalysis}
 
 ```{r}
+#| echo: false
+#| warning: false
+#| message: false
 
 # change to factors
 obesity$AgeGroup <- as.factor(obesity$AgeGroup)
@@ -124,6 +127,22 @@ obesity$Employment <- as.factor(obesity$Employment)
 obesity$Veg <- as.factor(obesity$Veg)
 obesity$Fruit <- as.factor(obesity$Fruit)
 obesity$Obese <- as.factor(obesity$Obese)
+```
+
+To answer our first question of interest we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in the following output match our assumptions from @fig-bar1: we can conclude that year has no significant effect on obesity in Scotland.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: tbl-output
+
+summary(glm(Obese ~ Year, data=obesity, family = "binomial"))
+```
+
+Full model:
+
+```{r}
 
 final.model <- glm(Obese ~ Veg + Sex * AgeGroup + Sex * Employment, family = 'binomial', data = obesity)
 

@@ -3065,6 +3065,37 @@ vertical-align: -.125em;
 </section>
 <section id="formalanalysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Formal Analysis</h1>
+<p>To answer our first question of interest we produce a logistic regression model for <code>Obesity</code> by <code>Year</code>. The large p-values shown in the following output match our assumptions from <a href="#fig-bar1">Figure 1</a>: we can conclude that year has no significant effect on obesity in Scotland.</p>
+<div id="tbl-output" class="cell tbl-parent quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p><strong>?(caption)</strong></p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<pre><code>
+Call:
+glm(formula = Obese ~ Year, family = &quot;binomial&quot;, data = obesity)
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -0.833026   0.035807 -23.264   &lt;2e-16 ***
+Year2014    -0.005634   0.051279  -0.110    0.913    
+Year2015     0.016265   0.050898   0.320    0.749    
+Year2016     0.011147   0.052466   0.212    0.832    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 17222  on 14016  degrees of freedom
+Residual deviance: 17222  on 14013  degrees of freedom
+AIC: 17230
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+</div>
+<p>Full model:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
