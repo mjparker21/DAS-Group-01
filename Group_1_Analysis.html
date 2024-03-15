@@ -8,7 +8,7 @@
 
 <meta name="author" content="Group 1">
 
-<title>Analysis of Obesiety Prevelance in Scotland (2013-2016)</title>
+<title>An Analysis of Obesity Prevelance in Scotland (2013-2016)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -2990,7 +2990,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Analysis of Obesiety Prevelance in Scotland (2013-2016)</h1>
+<h1 class="title">An Analysis of Obesity Prevelance in Scotland (2013-2016)</h1>
 </div>
 
 
@@ -3016,7 +3016,7 @@ vertical-align: -.125em;
 </section>
 <section id="exploranalysis" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Exploratory Analysis</h1>
-<p><a href="#fig-bar1">Figure 1</a> displays the relationship between variables <code>Obesity</code> and <code>Year</code> revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From <a href="#fig-bar1">Figure 1</a>, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller proportion in 2016 compared to the previous three years, but not much difference in the data from 2013 to 2015.</p>
+<p><a href="#fig-bar1">Figure 1</a> displays the relationship between variables <code>Obesity</code> and <code>Year</code> revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From <a href="#fig-bar1">Figure 1</a>, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller count in 2016 compared to the previous three years, but it appears that <code>Year</code> is not a significant explanatory variable.</p>
 <p>The proportion of no obesity has remained way above the proportion for obesity over the given years.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -3065,192 +3065,273 @@ vertical-align: -.125em;
 </section>
 <section id="formalanalysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Formal Analysis</h1>
-<p>To answer our first question of interest we produce a logistic regression model for <code>Obesity</code> by <code>Year</code>. The large p-values shown in the following output match our assumptions from <a href="#fig-bar1">Figure 1</a>: we can conclude that year has no significant effect on obesity in Scotland.</p>
+<p>To answer our first question of interest, we produce a logistic regression model for <code>Obesity</code> by <code>Year</code>. The large p-values shown in <a href="#fig-GLMyear">Figure 5</a> match our assumptions from <a href="#fig-bar1">Figure 1</a>: we can conclude that year has no significant effect on obesity in Scotland.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Obese ~ Year, family = &quot;binomial&quot;, data = obesity)
-
-Coefficients:
-             Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept) -0.833026   0.035807 -23.264   &lt;2e-16 ***
-Year2014    -0.005634   0.051279  -0.110    0.913    
-Year2015     0.016265   0.050898   0.320    0.749    
-Year2016     0.011147   0.052466   0.212    0.832    
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 17222  on 14016  degrees of freedom
-Residual deviance: 17222  on 14013  degrees of freedom
-AIC: 17230
-
-Number of Fisher Scoring iterations: 4</code></pre>
+<div id="fig-GLMyear" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">Std. Error</th>
+<th style="text-align: right;">z value</th>
+<th style="text-align: right;">Pr(&gt;|z|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-0.8330257</td>
+<td style="text-align: right;">0.0358072</td>
+<td style="text-align: right;">-23.2642066</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Year2014</td>
+<td style="text-align: right;">-0.0056340</td>
+<td style="text-align: right;">0.0512792</td>
+<td style="text-align: right;">-0.1098688</td>
+<td style="text-align: right;">0.9125134</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Year2015</td>
+<td style="text-align: right;">0.0162645</td>
+<td style="text-align: right;">0.0508975</td>
+<td style="text-align: right;">0.3195548</td>
+<td style="text-align: right;">0.7493058</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Year2016</td>
+<td style="text-align: right;">0.0111467</td>
+<td style="text-align: right;">0.0524656</td>
+<td style="text-align: right;">0.2124565</td>
+<td style="text-align: right;">0.8317509</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="figure-caption">Figure 5: GLM with Year as explanatory variable.</figcaption>
+</figure>
 </div>
 </div>
-<p>Full model:</p>
+<p>Through the comparison of multiple logistic regression models by stepwise regression using AIC, we find that the following model minimises the AIC:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Obese ~ Veg + Sex * AgeGroup + Sex * Employment, 
-    family = &quot;binomial&quot;, data = obesity)
-
-Coefficients:
-                                                                         Estimate
-(Intercept)                                                              -1.18917
-VegYes                                                                   -0.16572
-SexMale                                                                  -0.67535
-AgeGroup25-34                                                             0.30818
-AgeGroup35-44                                                             0.51347
-AgeGroup45-54                                                             0.62732
-AgeGroup55-64                                                             0.62519
-AgeGroup65-74                                                             0.82787
-AgeGroup75+                                                               0.62171
-EmploymentIn full-time education                                         -0.37471
-EmploymentIn paid employment, self-employed or on gov&#39;t training         -0.08474
-EmploymentLooking after home/family                                       0.30639
-EmploymentLooking for/intending to look for paid work                     0.46082
-EmploymentPerm unable to work                                             0.56474
-EmploymentRetired                                                        -0.04673
-SexMale:AgeGroup25-34                                                     0.32377
-SexMale:AgeGroup35-44                                                     0.35437
-SexMale:AgeGroup45-54                                                     0.52414
-SexMale:AgeGroup55-64                                                     0.74121
-SexMale:AgeGroup65-74                                                     0.45992
-SexMale:AgeGroup75+                                                       0.11185
-SexMale:EmploymentIn full-time education                                  0.23297
-SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training  0.13422
-SexMale:EmploymentLooking after home/family                               0.46427
-SexMale:EmploymentLooking for/intending to look for paid work            -0.43369
-SexMale:EmploymentPerm unable to work                                    -0.25679
-SexMale:EmploymentRetired                                                 0.23855
-                                                                         Std. Error
-(Intercept)                                                                 0.20287
-VegYes                                                                      0.04452
-SexMale                                                                     0.32910
-AgeGroup25-34                                                               0.13333
-AgeGroup35-44                                                               0.13138
-AgeGroup45-54                                                               0.12960
-AgeGroup55-64                                                               0.13417
-AgeGroup65-74                                                               0.15922
-AgeGroup75+                                                                 0.17287
-EmploymentIn full-time education                                            0.22083
-EmploymentIn paid employment, self-employed or on gov&#39;t training            0.16880
-EmploymentLooking after home/family                                         0.19555
-EmploymentLooking for/intending to look for paid work                       0.21534
-EmploymentPerm unable to work                                               0.19875
-EmploymentRetired                                                           0.18821
-SexMale:AgeGroup25-34                                                       0.21810
-SexMale:AgeGroup35-44                                                       0.21402
-SexMale:AgeGroup45-54                                                       0.21037
-SexMale:AgeGroup55-64                                                       0.21420
-SexMale:AgeGroup65-74                                                       0.24967
-SexMale:AgeGroup75+                                                         0.27270
-SexMale:EmploymentIn full-time education                                    0.36090
-SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training    0.27830
-SexMale:EmploymentLooking after home/family                                 0.43726
-SexMale:EmploymentLooking for/intending to look for paid work               0.34220
-SexMale:EmploymentPerm unable to work                                       0.31935
-SexMale:EmploymentRetired                                                   0.30437
-                                                                         z value
-(Intercept)                                                               -5.862
-VegYes                                                                    -3.722
-SexMale                                                                   -2.052
-AgeGroup25-34                                                              2.311
-AgeGroup35-44                                                              3.908
-AgeGroup45-54                                                              4.841
-AgeGroup55-64                                                              4.660
-AgeGroup65-74                                                              5.199
-AgeGroup75+                                                                3.596
-EmploymentIn full-time education                                          -1.697
-EmploymentIn paid employment, self-employed or on gov&#39;t training          -0.502
-EmploymentLooking after home/family                                        1.567
-EmploymentLooking for/intending to look for paid work                      2.140
-EmploymentPerm unable to work                                              2.841
-EmploymentRetired                                                         -0.248
-SexMale:AgeGroup25-34                                                      1.485
-SexMale:AgeGroup35-44                                                      1.656
-SexMale:AgeGroup45-54                                                      2.491
-SexMale:AgeGroup55-64                                                      3.460
-SexMale:AgeGroup65-74                                                      1.842
-SexMale:AgeGroup75+                                                        0.410
-SexMale:EmploymentIn full-time education                                   0.646
-SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training   0.482
-SexMale:EmploymentLooking after home/family                                1.062
-SexMale:EmploymentLooking for/intending to look for paid work             -1.267
-SexMale:EmploymentPerm unable to work                                     -0.804
-SexMale:EmploymentRetired                                                  0.784
-                                                                         Pr(&gt;|z|)
-(Intercept)                                                              4.58e-09
-VegYes                                                                   0.000197
-SexMale                                                                  0.040161
-AgeGroup25-34                                                            0.020815
-AgeGroup35-44                                                            9.30e-05
-AgeGroup45-54                                                            1.29e-06
-AgeGroup55-64                                                            3.17e-06
-AgeGroup65-74                                                            2.00e-07
-AgeGroup75+                                                              0.000323
-EmploymentIn full-time education                                         0.089730
-EmploymentIn paid employment, self-employed or on gov&#39;t training         0.615639
-EmploymentLooking after home/family                                      0.117157
-EmploymentLooking for/intending to look for paid work                    0.032361
-EmploymentPerm unable to work                                            0.004490
-EmploymentRetired                                                        0.803916
-SexMale:AgeGroup25-34                                                    0.137670
-SexMale:AgeGroup35-44                                                    0.097771
-SexMale:AgeGroup45-54                                                    0.012721
-SexMale:AgeGroup55-64                                                    0.000539
-SexMale:AgeGroup65-74                                                    0.065455
-SexMale:AgeGroup75+                                                      0.681690
-SexMale:EmploymentIn full-time education                                 0.518584
-SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training 0.629600
-SexMale:EmploymentLooking after home/family                              0.288333
-SexMale:EmploymentLooking for/intending to look for paid work            0.205025
-SexMale:EmploymentPerm unable to work                                    0.421346
-SexMale:EmploymentRetired                                                0.433202
-                                                                            
-(Intercept)                                                              ***
-VegYes                                                                   ***
-SexMale                                                                  *  
-AgeGroup25-34                                                            *  
-AgeGroup35-44                                                            ***
-AgeGroup45-54                                                            ***
-AgeGroup55-64                                                            ***
-AgeGroup65-74                                                            ***
-AgeGroup75+                                                              ***
-EmploymentIn full-time education                                         .  
-EmploymentIn paid employment, self-employed or on gov&#39;t training            
-EmploymentLooking after home/family                                         
-EmploymentLooking for/intending to look for paid work                    *  
-EmploymentPerm unable to work                                            ** 
-EmploymentRetired                                                           
-SexMale:AgeGroup25-34                                                       
-SexMale:AgeGroup35-44                                                    .  
-SexMale:AgeGroup45-54                                                    *  
-SexMale:AgeGroup55-64                                                    ***
-SexMale:AgeGroup65-74                                                    .  
-SexMale:AgeGroup75+                                                         
-SexMale:EmploymentIn full-time education                                    
-SexMale:EmploymentIn paid employment, self-employed or on gov&#39;t training    
-SexMale:EmploymentLooking after home/family                                 
-SexMale:EmploymentLooking for/intending to look for paid work               
-SexMale:EmploymentPerm unable to work                                       
-SexMale:EmploymentRetired                                                   
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 17222  on 14016  degrees of freedom
-Residual deviance: 16855  on 13990  degrees of freedom
-AIC: 16909
-
-Number of Fisher Scoring iterations: 4</code></pre>
+<div id="fig-GLMfull" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 58%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">Std. Error</th>
+<th style="text-align: right;">z value</th>
+<th style="text-align: right;">Pr(&gt;|z|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-1.1891655</td>
+<td style="text-align: right;">0.2028740</td>
+<td style="text-align: right;">-5.8615962</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VegYes</td>
+<td style="text-align: right;">-0.1657196</td>
+<td style="text-align: right;">0.0445211</td>
+<td style="text-align: right;">-3.7222727</td>
+<td style="text-align: right;">0.0001974</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale</td>
+<td style="text-align: right;">-0.6753472</td>
+<td style="text-align: right;">0.3291020</td>
+<td style="text-align: right;">-2.0520907</td>
+<td style="text-align: right;">0.0401609</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AgeGroup25-34</td>
+<td style="text-align: right;">0.3081774</td>
+<td style="text-align: right;">0.1333340</td>
+<td style="text-align: right;">2.3113193</td>
+<td style="text-align: right;">0.0208152</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AgeGroup35-44</td>
+<td style="text-align: right;">0.5134657</td>
+<td style="text-align: right;">0.1313788</td>
+<td style="text-align: right;">3.9082853</td>
+<td style="text-align: right;">0.0000930</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AgeGroup45-54</td>
+<td style="text-align: right;">0.6273202</td>
+<td style="text-align: right;">0.1295964</td>
+<td style="text-align: right;">4.8405673</td>
+<td style="text-align: right;">0.0000013</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AgeGroup55-64</td>
+<td style="text-align: right;">0.6251870</td>
+<td style="text-align: right;">0.1341725</td>
+<td style="text-align: right;">4.6595770</td>
+<td style="text-align: right;">0.0000032</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AgeGroup65-74</td>
+<td style="text-align: right;">0.8278669</td>
+<td style="text-align: right;">0.1592206</td>
+<td style="text-align: right;">5.1994952</td>
+<td style="text-align: right;">0.0000002</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AgeGroup75+</td>
+<td style="text-align: right;">0.6217087</td>
+<td style="text-align: right;">0.1728706</td>
+<td style="text-align: right;">3.5963822</td>
+<td style="text-align: right;">0.0003227</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EmploymentIn full-time education</td>
+<td style="text-align: right;">-0.3747125</td>
+<td style="text-align: right;">0.2208315</td>
+<td style="text-align: right;">-1.6968258</td>
+<td style="text-align: right;">0.0897296</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EmploymentIn paid employment, self-employed or on gov’t training</td>
+<td style="text-align: right;">-0.0847445</td>
+<td style="text-align: right;">0.1688001</td>
+<td style="text-align: right;">-0.5020405</td>
+<td style="text-align: right;">0.6156390</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EmploymentLooking after home/family</td>
+<td style="text-align: right;">0.3063905</td>
+<td style="text-align: right;">0.1955492</td>
+<td style="text-align: right;">1.5668205</td>
+<td style="text-align: right;">0.1171566</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EmploymentLooking for/intending to look for paid work</td>
+<td style="text-align: right;">0.4608163</td>
+<td style="text-align: right;">0.2153427</td>
+<td style="text-align: right;">2.1399204</td>
+<td style="text-align: right;">0.0323612</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EmploymentPerm unable to work</td>
+<td style="text-align: right;">0.5647436</td>
+<td style="text-align: right;">0.1987495</td>
+<td style="text-align: right;">2.8414841</td>
+<td style="text-align: right;">0.0044904</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EmploymentRetired</td>
+<td style="text-align: right;">-0.0467289</td>
+<td style="text-align: right;">0.1882087</td>
+<td style="text-align: right;">-0.2482823</td>
+<td style="text-align: right;">0.8039160</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexMale:AgeGroup25-34</td>
+<td style="text-align: right;">0.3237724</td>
+<td style="text-align: right;">0.2180983</td>
+<td style="text-align: right;">1.4845248</td>
+<td style="text-align: right;">0.1376698</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale:AgeGroup35-44</td>
+<td style="text-align: right;">0.3543665</td>
+<td style="text-align: right;">0.2140207</td>
+<td style="text-align: right;">1.6557581</td>
+<td style="text-align: right;">0.0977708</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexMale:AgeGroup45-54</td>
+<td style="text-align: right;">0.5241354</td>
+<td style="text-align: right;">0.2103705</td>
+<td style="text-align: right;">2.4914872</td>
+<td style="text-align: right;">0.0127210</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale:AgeGroup55-64</td>
+<td style="text-align: right;">0.7412136</td>
+<td style="text-align: right;">0.2141975</td>
+<td style="text-align: right;">3.4604213</td>
+<td style="text-align: right;">0.0005393</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexMale:AgeGroup65-74</td>
+<td style="text-align: right;">0.4599220</td>
+<td style="text-align: right;">0.2496674</td>
+<td style="text-align: right;">1.8421390</td>
+<td style="text-align: right;">0.0654548</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale:AgeGroup75+</td>
+<td style="text-align: right;">0.1118498</td>
+<td style="text-align: right;">0.2726993</td>
+<td style="text-align: right;">0.4101580</td>
+<td style="text-align: right;">0.6816900</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexMale:EmploymentIn full-time education</td>
+<td style="text-align: right;">0.2329719</td>
+<td style="text-align: right;">0.3609007</td>
+<td style="text-align: right;">0.6455291</td>
+<td style="text-align: right;">0.5185844</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale:EmploymentIn paid employment, self-employed or on gov’t training</td>
+<td style="text-align: right;">0.1342227</td>
+<td style="text-align: right;">0.2783032</td>
+<td style="text-align: right;">0.4822894</td>
+<td style="text-align: right;">0.6296004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexMale:EmploymentLooking after home/family</td>
+<td style="text-align: right;">0.4642722</td>
+<td style="text-align: right;">0.4372558</td>
+<td style="text-align: right;">1.0617862</td>
+<td style="text-align: right;">0.2883328</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale:EmploymentLooking for/intending to look for paid work</td>
+<td style="text-align: right;">-0.4336918</td>
+<td style="text-align: right;">0.3421997</td>
+<td style="text-align: right;">-1.2673645</td>
+<td style="text-align: right;">0.2050250</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexMale:EmploymentPerm unable to work</td>
+<td style="text-align: right;">-0.2567880</td>
+<td style="text-align: right;">0.3193533</td>
+<td style="text-align: right;">-0.8040878</td>
+<td style="text-align: right;">0.4213463</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale:EmploymentRetired</td>
+<td style="text-align: right;">0.2385450</td>
+<td style="text-align: right;">0.3043739</td>
+<td style="text-align: right;">0.7837237</td>
+<td style="text-align: right;">0.4332022</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="figure-caption">Figure 6: Best fitting GLM model.</figcaption>
+</figure>
 </div>
 </div>
+<p>From our model we can draw multiple conclusions.</p>
 </section>
 <section id="conclusion" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Conclusion</h1>
