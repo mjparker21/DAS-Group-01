@@ -40,6 +40,22 @@ obesity <- read.csv("DAProject3.csv")
 
 # Introduction {#intro}
 
+Obesity is a serious public health concern. Obesity occurs when an individuals energy intake from food and drink is higher than the amount of energy needed over a period of time. Data have been gathered from the Scottish Health Surveys from 2013-2016. The data gathered include `Obese` an indicator of whether an individual classes themselves as obese and the following other lifestyle and socio-economic factors:
+
+-   `AgeGroup` - The age range of the individual
+
+-   `Sex` - The sex of an individual (Male or Female)
+
+-   `Employment` - The individuals employment status
+
+-   `Veg` - Indicates whether the individual consumes vegetables (Yes/No)
+
+-   `Fruit` - Indicates whether the individual consumes fruit (Yes/No)
+
+-   `Year` - The year in which the Scottish Health Survey was conducted
+
+The main focus of this report will be to examine the prevalence of obesity in Scotland over the years this survey was conducted and to examine differences in obesity by the other lifestyle and socio-economic factors.
+
 # Exploratory Analysis {#exploranalysis}
 
 @fig-bar1 displays the relationship between variables `Obesity` and `Year` revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From @fig-bar1, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller count in 2016 compared to the previous three years, but it appears that `Year` is not a significant explanatory variable.
@@ -160,14 +176,13 @@ knitr::kable(coefficents.year)
 
 Now we go ahead and fit a model to be able to find a relationship between obesity and lifestyle and socio-economic factors. The `Year` and `Fruit` variables are not included in our initial fit of the model because from the exploratory analysis these variables do not appear to impact obesity. The `StepAIC` function from the `MASS` package is then used to fit the model with the lowest AIC.
 
-
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 obesity.sub2 <- obesity |> dplyr::select(Obese,Veg,Sex,Employment,AgeGroup)
 init.model <- glm(Obese~.^2, data = obesity.sub2, family = "binomial")
-final.model <- stepAIC(init.model,direction = "both")
+final.model <- stepAIC(init.model,direction = "both", trace = FALSE)
 ```
 
 ```{r}
@@ -183,4 +198,3 @@ knitr::kable(coefficents.final)
 ```
 
 From our model we can draw multiple conclusions.
-# Conclusion {#conclusion}
