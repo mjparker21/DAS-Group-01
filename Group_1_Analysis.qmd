@@ -1,5 +1,5 @@
 ---
-title: "Analysis of Obesiety Prevelance in Scotland (2013-2016)"
+title: "An Analysis of Obesity Prevelance in Scotland (2013-2016)"
 author: "Group 1 "
 execute: 
   echo: false
@@ -42,7 +42,7 @@ obesity <- read.csv("DAProject3.csv")
 
 @fig-bar1 displays the relationship between variables `Obesity` and `Year` revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From @fig-bar1, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller count in 2016 compared to the previous three years, but it appears that `Year` is not a significant explanatory variable.
 
-The count for no obesity has remained way above the count for obesity over the given years.
+The proportion of no obesity has remained way above the proportion for obesity over the given years.
 
 ```{r}
 #| echo: false
@@ -57,9 +57,9 @@ ggplot(obesity, aes(x = Year, group = Obese)) +
   labs(y = "Proportion", fill = "Obese")
 ```
 
-In @fig-bar2 we observe the relationships between `Obesity` and `AgeGroup`, and `Obesity` and `Sex`. It is revealed that the obesity count is highest in the 55-64 age group and decreases as age decreases, as well as for an increase in age. The lowest obesity number is counted in the 16-24 age group.
+In @fig-bar2 we observe the relationships between `Obesity` and `AgeGroup`, and `Obesity` and `Sex`. It is revealed that the obesity proportion is highest in the 55-64 age group and decreases as age decreases, as well as for an increase in age. The lowest obesity proportion is counted in the 16-24 age group.
 
-We can also see in @fig-bar2 that the obesity count appears slightly higher in females than in males.
+We can also see in @fig-bar2 that obesity appears slightly higher in females than in males.
 
 ```{r}
 #| echo: false
@@ -107,7 +107,7 @@ v <- ggplot(obesity, aes(x = Veg, group = Obese)) +
 f+v+plot_layout(ncol = 2)
 ```
 
-Finally, the relationship between `Obesity` and `Employment` is revealed in @fig-bar4. The obesity count is clearly highest in employed individuals, followed by retirees, while the other factors appear to have very low obesity counts.
+Finally, the relationship between `Obesity` and `Employment` is revealed in @fig-bar4. The obesity proportion is clearly highest in employed individuals, followed by retirees, while the other factors appear to have very low proportions of obesity.
 
 ```{r}
 #| echo: false
@@ -120,7 +120,9 @@ Finally, the relationship between `Obesity` and `Employment` is revealed in @fig
 
 ggplot(obesity_sub, aes(x = Employment, group = Obese)) + 
   geom_bar(aes(y = after_stat(prop), fill = Obese), fill = "turquoise3", stat = "count", position = "dodge") +
-  labs(y = "Proportion", fill = "Obese")
+  labs(y = "Proportion") +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
 ```
 
 # Formal Analysis {#formalanalysis}
@@ -174,6 +176,19 @@ full.model <- glm(Obese ~ .^2, data = obesity, family = 'binomial')
 
 # stepAIC(full.model, direction = "both")
 
+summary(glm(Obese ~ Year, data=obesity, family = "binomial"))
+```
+
+Full model:
+
+```{r}
+
+# test interaction model AIC
+
+# full.int.model <- glm(Obese ~ Sex * Veg + AgeGroup * Veg + Employment * Veg + AgeGroup * Employment + AgeGroup * Sex + Sex * Employment, family = 'binomial', data = obesity)
+# full.int.model <- glm(Obese ~ .^2, data = obesity, family = 'binomial')
+
+# stepAIC(full.int.model, direction = "both")
 
 # final model according to AIC:
 
