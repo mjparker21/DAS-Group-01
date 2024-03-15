@@ -40,7 +40,7 @@ obesity <- read.csv("DAProject3.csv")
 
 # Exploratory Analysis {#exploranalysis}
 
-@fig-bar1 displays the relationship between variables `Obesity` and `Year` revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From @fig-bar1, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller count in 2016 compared to the previous three years, but not much difference in the data from 2013 to 2015.
+@fig-bar1 displays the relationship between variables `Obesity` and `Year` revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From @fig-bar1, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller count in 2016 compared to the previous three years, but it appears that `Year` is not a significant explanatory variable.
 
 The count for no obesity has remained way above the count for obesity over the given years.
 
@@ -129,18 +129,23 @@ obesity$Fruit <- as.factor(obesity$Fruit)
 obesity$Obese <- as.factor(obesity$Obese)
 ```
 
-To answer our first question of interest we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in the following output match our assumptions from @fig-bar1: we can conclude that year has no significant effect on obesity in Scotland.
+To answer our first question of interest, we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in the following output match our assumptions from @fig-bar1: we can conclude that year has no significant effect on obesity in Scotland.
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
-#| label: tbl-output
+#| label: fig-GLMyear
+#| fig-cap: GLM with Year as explanatory variable.
 
 summary(glm(Obese ~ Year, data=obesity, family = "binomial"))
 ```
 
-Full model:
+Through the comparison of multiple logistic regression models, we find that the following model minimises the AIC:
+
+$$
+y = 
+$$ {#eq-fullmodel}
 
 ```{r}
 
@@ -148,5 +153,7 @@ final.model <- glm(Obese ~ Veg + Sex * AgeGroup + Sex * Employment, family = 'bi
 
 summary(final.model)
 ```
+
+From our model we can draw multiple conclusions. Firstly, ...
 
 # Conclusion {#conclusion}
