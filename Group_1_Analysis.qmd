@@ -142,7 +142,7 @@ obesity$Fruit <- as.factor(obesity$Fruit)
 obesity$Obese <- as.factor(obesity$Obese)
 ```
 
-To answer our first question of interest, we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in the following output match our assumptions from @fig-bar1: we can conclude that year has no significant effect on obesity in Scotland.
+To answer our first question of interest, we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in @fig-GLMyear match our assumptions from @fig-bar1: we can conclude that year has no significant effect on obesity in Scotland.
 
 ```{r}
 #| echo: false
@@ -151,33 +151,53 @@ To answer our first question of interest, we produce a logistic regression model
 #| label: fig-GLMyear
 #| fig-cap: GLM with Year as explanatory variable.
 
-summary(glm(Obese ~ Year, data=obesity, family = "binomial"))
+year.model <- glm(Obese ~ Year, data=obesity, family = "binomial")
+
+coefficents.year <- year.model |> 
+  summary() |> 
+  coef()
+
+knitr::kable(coefficents.year)
+
 ```
 
-Through the comparison of multiple logistic regression models, we find that the following model minimises the AIC:
-
-$$
-y = 
-$$ {#eq-fullmodel}
-
+Through the comparison of multiple logistic regression models by stepwise regression using AIC, we find that the following model minimises the AIC:
 
 ```{r}
+#| echo: false
+#| warning: false
+#| message: false 
 
 # test interaction model AIC
 
-# full.int.model <- glm(Obese ~ Sex * Veg + AgeGroup * Veg + Employment * Veg + AgeGroup * Employment + AgeGroup * Sex + Sex * Employment, family = 'binomial', data = obesity)
-# full.int.model <- glm(Obese ~ .^2, data = obesity, family = 'binomial')
+full.model <- glm(Obese ~ Sex * Veg + AgeGroup * Veg + Employment * Veg + AgeGroup * Employment + AgeGroup * Sex + Sex * Employment, family = 'binomial', data = obesity)
 
-# stepAIC(full.int.model, direction = "both")
+full.model <- glm(Obese ~ .^2, data = obesity, family = 'binomial')
+
+# stepAIC(full.model, direction = "both")
 
 
 # final model according to AIC:
 
 final.model <- glm(Obese ~ Veg + Sex * AgeGroup + Sex * Employment, family = 'binomial', data = obesity)
 
-summary(final.model)
 ```
 
-From our model we can draw multiple conclusions. Firstly, ...
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-GLMfull
+#| fig-cap: Best fitting GLM model.
+
+coefficents.final <- final.model |> 
+  summary() |> 
+  coef()
+
+knitr::kable(coefficents.final)
+```
+
+
+From our model we can draw multiple conclusions.
 
 # Conclusion {#conclusion}
