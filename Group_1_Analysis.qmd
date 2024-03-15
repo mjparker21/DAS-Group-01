@@ -198,3 +198,6 @@ knitr::kable(coefficents.final)
 ```
 
 From our model we can draw multiple conclusions.
+
+# Conclusion {#conclusion}
+
