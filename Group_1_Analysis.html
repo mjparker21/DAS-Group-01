@@ -3114,7 +3114,75 @@ vertical-align: -.125em;
 </figure>
 </div>
 </div>
-<p>Through the comparison of multiple logistic regression models by stepwise regression using AIC, we find that the following model minimises the AIC:</p>
+<p>Now we go ahead and fit a model to be able to find a relationship between obesity and lifestyle and socio-economic factors. The <code>Year</code> and <code>Fruit</code> variables are not included in our initial fit of the model because from the exploratory analysis these variables do not appear to impact obesity. The <code>StepAIC</code> function from the <code>MASS</code> package is then used to fit the model with the lowest AIC.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=16933.74
+Obese ~ (Veg + Sex + Employment + AgeGroup)^2
+
+                      Df Deviance   AIC
+- Employment:AgeGroup 31    16842 16922
+- Veg:AgeGroup         6    16798 16928
+- Veg:Employment       6    16801 16931
+- Veg:Sex              1    16793 16933
+&lt;none&gt;                      16792 16934
+- Sex:Employment       6    16805 16935
+- Sex:AgeGroup         6    16817 16947
+
+Step:  AIC=16921.63
+Obese ~ Veg + Sex + Employment + AgeGroup + Veg:Sex + Veg:Employment + 
+    Veg:AgeGroup + Sex:Employment + Sex:AgeGroup
+
+                      Df Deviance   AIC
+- Veg:AgeGroup         6    16846 16914
+- Veg:Employment       6    16849 16917
+- Veg:Sex              1    16843 16921
+&lt;none&gt;                      16842 16922
+- Sex:Employment       6    16856 16924
++ Employment:AgeGroup 31    16792 16934
+- Sex:AgeGroup         6    16867 16935
+
+Step:  AIC=16913.98
+Obese ~ Veg + Sex + Employment + AgeGroup + Veg:Sex + Veg:Employment + 
+    Sex:Employment + Sex:AgeGroup
+
+                      Df Deviance   AIC
+- Veg:Employment       6    16854 16910
+- Veg:Sex              1    16847 16913
+&lt;none&gt;                      16846 16914
+- Sex:Employment       6    16860 16916
++ Veg:AgeGroup         6    16842 16922
+- Sex:AgeGroup         6    16871 16927
++ Employment:AgeGroup 31    16798 16928
+
+Step:  AIC=16909.79
+Obese ~ Veg + Sex + Employment + AgeGroup + Veg:Sex + Sex:Employment + 
+    Sex:AgeGroup
+
+                      Df Deviance   AIC
+- Veg:Sex              1    16855 16909
+&lt;none&gt;                      16854 16910
+- Sex:Employment       6    16868 16912
++ Veg:Employment       6    16846 16914
++ Veg:AgeGroup         6    16849 16917
+- Sex:AgeGroup         6    16879 16923
++ Employment:AgeGroup 31    16806 16924
+
+Step:  AIC=16908.99
+Obese ~ Veg + Sex + Employment + AgeGroup + Sex:Employment + 
+    Sex:AgeGroup
+
+                      Df Deviance   AIC
+&lt;none&gt;                      16855 16909
++ Veg:Sex              1    16854 16910
+- Sex:Employment       6    16870 16912
++ Veg:Employment       6    16847 16913
++ Veg:AgeGroup         6    16851 16917
+- Veg                  1    16869 16921
+- Sex:AgeGroup         6    16881 16923
++ Employment:AgeGroup 31    16808 16924</code></pre>
+</div>
+</div>
 <div class="cell">
 <div id="fig-GLMfull" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -3156,48 +3224,6 @@ vertical-align: -.125em;
 <td style="text-align: right;">0.3291020</td>
 <td style="text-align: right;">-2.0520907</td>
 <td style="text-align: right;">0.0401609</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">AgeGroup25-34</td>
-<td style="text-align: right;">0.3081774</td>
-<td style="text-align: right;">0.1333340</td>
-<td style="text-align: right;">2.3113193</td>
-<td style="text-align: right;">0.0208152</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AgeGroup35-44</td>
-<td style="text-align: right;">0.5134657</td>
-<td style="text-align: right;">0.1313788</td>
-<td style="text-align: right;">3.9082853</td>
-<td style="text-align: right;">0.0000930</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">AgeGroup45-54</td>
-<td style="text-align: right;">0.6273202</td>
-<td style="text-align: right;">0.1295964</td>
-<td style="text-align: right;">4.8405673</td>
-<td style="text-align: right;">0.0000013</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AgeGroup55-64</td>
-<td style="text-align: right;">0.6251870</td>
-<td style="text-align: right;">0.1341725</td>
-<td style="text-align: right;">4.6595770</td>
-<td style="text-align: right;">0.0000032</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">AgeGroup65-74</td>
-<td style="text-align: right;">0.8278669</td>
-<td style="text-align: right;">0.1592206</td>
-<td style="text-align: right;">5.1994952</td>
-<td style="text-align: right;">0.0000002</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AgeGroup75+</td>
-<td style="text-align: right;">0.6217087</td>
-<td style="text-align: right;">0.1728706</td>
-<td style="text-align: right;">3.5963822</td>
-<td style="text-align: right;">0.0003227</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">EmploymentIn full-time education</td>
@@ -3242,46 +3268,46 @@ vertical-align: -.125em;
 <td style="text-align: right;">0.8039160</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SexMale:AgeGroup25-34</td>
-<td style="text-align: right;">0.3237724</td>
-<td style="text-align: right;">0.2180983</td>
-<td style="text-align: right;">1.4845248</td>
-<td style="text-align: right;">0.1376698</td>
+<td style="text-align: left;">AgeGroup25-34</td>
+<td style="text-align: right;">0.3081774</td>
+<td style="text-align: right;">0.1333340</td>
+<td style="text-align: right;">2.3113193</td>
+<td style="text-align: right;">0.0208152</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SexMale:AgeGroup35-44</td>
-<td style="text-align: right;">0.3543665</td>
-<td style="text-align: right;">0.2140207</td>
-<td style="text-align: right;">1.6557581</td>
-<td style="text-align: right;">0.0977708</td>
+<td style="text-align: left;">AgeGroup35-44</td>
+<td style="text-align: right;">0.5134657</td>
+<td style="text-align: right;">0.1313788</td>
+<td style="text-align: right;">3.9082853</td>
+<td style="text-align: right;">0.0000930</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SexMale:AgeGroup45-54</td>
-<td style="text-align: right;">0.5241354</td>
-<td style="text-align: right;">0.2103705</td>
-<td style="text-align: right;">2.4914872</td>
-<td style="text-align: right;">0.0127210</td>
+<td style="text-align: left;">AgeGroup45-54</td>
+<td style="text-align: right;">0.6273202</td>
+<td style="text-align: right;">0.1295964</td>
+<td style="text-align: right;">4.8405673</td>
+<td style="text-align: right;">0.0000013</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SexMale:AgeGroup55-64</td>
-<td style="text-align: right;">0.7412136</td>
-<td style="text-align: right;">0.2141975</td>
-<td style="text-align: right;">3.4604213</td>
-<td style="text-align: right;">0.0005393</td>
+<td style="text-align: left;">AgeGroup55-64</td>
+<td style="text-align: right;">0.6251870</td>
+<td style="text-align: right;">0.1341725</td>
+<td style="text-align: right;">4.6595770</td>
+<td style="text-align: right;">0.0000032</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SexMale:AgeGroup65-74</td>
-<td style="text-align: right;">0.4599220</td>
-<td style="text-align: right;">0.2496674</td>
-<td style="text-align: right;">1.8421390</td>
-<td style="text-align: right;">0.0654548</td>
+<td style="text-align: left;">AgeGroup65-74</td>
+<td style="text-align: right;">0.8278669</td>
+<td style="text-align: right;">0.1592206</td>
+<td style="text-align: right;">5.1994952</td>
+<td style="text-align: right;">0.0000002</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SexMale:AgeGroup75+</td>
-<td style="text-align: right;">0.1118498</td>
-<td style="text-align: right;">0.2726993</td>
-<td style="text-align: right;">0.4101580</td>
-<td style="text-align: right;">0.6816900</td>
+<td style="text-align: left;">AgeGroup75+</td>
+<td style="text-align: right;">0.6217087</td>
+<td style="text-align: right;">0.1728706</td>
+<td style="text-align: right;">3.5963822</td>
+<td style="text-align: right;">0.0003227</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SexMale:EmploymentIn full-time education</td>
@@ -3324,6 +3350,48 @@ vertical-align: -.125em;
 <td style="text-align: right;">0.3043739</td>
 <td style="text-align: right;">0.7837237</td>
 <td style="text-align: right;">0.4332022</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexMale:AgeGroup25-34</td>
+<td style="text-align: right;">0.3237724</td>
+<td style="text-align: right;">0.2180983</td>
+<td style="text-align: right;">1.4845248</td>
+<td style="text-align: right;">0.1376698</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale:AgeGroup35-44</td>
+<td style="text-align: right;">0.3543665</td>
+<td style="text-align: right;">0.2140207</td>
+<td style="text-align: right;">1.6557581</td>
+<td style="text-align: right;">0.0977708</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexMale:AgeGroup45-54</td>
+<td style="text-align: right;">0.5241354</td>
+<td style="text-align: right;">0.2103705</td>
+<td style="text-align: right;">2.4914872</td>
+<td style="text-align: right;">0.0127210</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale:AgeGroup55-64</td>
+<td style="text-align: right;">0.7412136</td>
+<td style="text-align: right;">0.2141975</td>
+<td style="text-align: right;">3.4604213</td>
+<td style="text-align: right;">0.0005393</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexMale:AgeGroup65-74</td>
+<td style="text-align: right;">0.4599220</td>
+<td style="text-align: right;">0.2496674</td>
+<td style="text-align: right;">1.8421390</td>
+<td style="text-align: right;">0.0654548</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale:AgeGroup75+</td>
+<td style="text-align: right;">0.1118498</td>
+<td style="text-align: right;">0.2726993</td>
+<td style="text-align: right;">0.4101580</td>
+<td style="text-align: right;">0.6816900</td>
 </tr>
 </tbody>
 </table>
