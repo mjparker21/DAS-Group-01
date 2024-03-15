@@ -52,8 +52,9 @@ The count for no obesity has remained way above the count for obesity over the g
 #| fig-cap: Relationship between Obesity and Year.
 #| fig-align: center
 #| fig-height: 3.5
-ggplot(obesity, aes(x = Year, fill=Obese)) + geom_bar(position = 'dodge') +
-  labs(y = "Count")
+ggplot(obesity, aes(x = Year, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), stat = "count", position = "dodge") +
+  labs(y = "Proportion", fill = "Obese")
 ```
 
 In @fig-bar2 we observe the relationships between `Obesity` and `AgeGroup`, and `Obesity` and `Sex`. It is revealed that the obesity count is highest in the 55-64 age group and decreases as age decreases, as well as for an increase in age. The lowest obesity number is counted in the 16-24 age group.
@@ -69,10 +70,15 @@ We can also see in @fig-bar2 that the obesity count appears slightly higher in f
 #| fig-align: center
 #| fig-height: 3.5
 obesity_sub <- obesity |> dplyr::filter(Obese=="Yes")
-p1 <- ggplot(obesity_sub, aes(x = AgeGroup)) + geom_bar(fill = "turquoise3") +
-      labs(y = "Count")
 
-p2 <- ggplot(obesity, aes(x = Sex, fill = Obese)) + geom_bar(position = 'dodge') + labs(y = "Count")
+p1 <- ggplot(obesity_sub, aes(x = AgeGroup, group = Obese)) + 
+      geom_bar(aes(y = after_stat(prop)), fill = "turquoise3", stat = "count", position = "dodge") +
+      labs(y = "Proportion", fill = "Obese")
+
+p2 <- ggplot(obesity, aes(x = Sex, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), stat = "count", position = "dodge") +
+  labs(y = "Proportion", fill = "Obese")
+
 
 p1+p2+plot_layout(ncol = 2)
 ```
@@ -87,13 +93,18 @@ We also observe the relationship between `Obesity` and different lifestyle facto
 #| fig-cap: Relationship between Obesity and Lifestyle Factors.
 #| fig-align: center
 #| fig-height: 3.5
-p1 <- ggplot(obesity, aes(x = Fruit, fill=Obese)) + geom_bar(position = 'dodge') +
-  labs(y = "Count")
 
-p2 <- ggplot(obesity, aes(x = Veg, fill=Obese)) + geom_bar(position = 'dodge') +
-  labs(y = "Count")
+# fruit
+f <- ggplot(obesity, aes(x = Fruit, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), stat = "count", position = "dodge") +
+  labs(y = "Proportion", fill = "Obese")
 
-p1+p2+plot_layout(ncol = 2)
+# veg
+v <- ggplot(obesity, aes(x = Veg, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), stat = "count", position = "dodge") +
+  labs(y = "Proportion", fill = "Obese")
+
+f+v+plot_layout(ncol = 2)
 ```
 
 Finally, the relationship between `Obesity` and `Employment` is revealed in @fig-bar4. The obesity count is clearly highest in employed individuals, followed by retirees, while the other factors appear to have very low obesity counts.
@@ -106,10 +117,10 @@ Finally, the relationship between `Obesity` and `Employment` is revealed in @fig
 #| fig-cap: Relationship between Obesity and Socio-economic Status. 
 #| fig-align: center
 #| fig-height: 3.5
-ggplot(obesity_sub, aes(x = Employment)) + 
-         geom_bar(fill = "turquoise3") +
-  labs(y = "Count") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+ggplot(obesity_sub, aes(x = Employment, group = Obese)) + 
+  geom_bar(aes(y = after_stat(prop), fill = Obese), fill = "turquoise3", stat = "count", position = "dodge") +
+  labs(y = "Proportion", fill = "Obese")
 ```
 
 # Formal Analysis {#formalanalysis}
