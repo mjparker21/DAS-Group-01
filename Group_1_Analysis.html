@@ -3116,31 +3116,6 @@ vertical-align: -.125em;
 </div>
 <p>Through the comparison of multiple logistic regression models by stepwise regression using AIC, we find that the following model minimises the AIC:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Obese ~ Year, family = &quot;binomial&quot;, data = obesity)
-
-Coefficients:
-             Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept) -0.833026   0.035807 -23.264   &lt;2e-16 ***
-Year2014    -0.005634   0.051279  -0.110    0.913    
-Year2015     0.016265   0.050898   0.320    0.749    
-Year2016     0.011147   0.052466   0.212    0.832    
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 17222  on 14016  degrees of freedom
-Residual deviance: 17222  on 14013  degrees of freedom
-AIC: 17230
-
-Number of Fisher Scoring iterations: 4</code></pre>
-</div>
-</div>
-<p>Full model:</p>
-<div class="cell">
 <div id="fig-GLMfull" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <table class="table table-sm table-striped small">
