@@ -199,6 +199,8 @@ coefficents.final <- final.model |>
 knitr::kable(coefficents.final)
 ```
 
-From our model we can draw multiple conclusions.
+From our model we can draw multiple conclusions...
+
+## Assessing model assumptions
 
 # Conclusion {#sec-conclusion}
