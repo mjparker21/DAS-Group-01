@@ -38,25 +38,27 @@ library(knitr)
 obesity <- read.csv("DAProject3.csv")
 ```
 
-# Introduction {#intro}
+# Introduction {#sec-intro}
 
-Obesity is a serious public health concern. Obesity occurs when an individuals energy intake from food and drink is higher than the amount of energy needed over a period of time. Data have been gathered from the Scottish Health Surveys from 2013-2016. The data gathered include `Obese` an indicator of whether an individual classes themselves as obese and the following other lifestyle and socio-economic factors:
+Obesity is a serious public health concern. Obesity occurs when an individual's energy intake from food and drink is higher than the amount of energy needed over a period of time. Data has been gathered from the Scottish Health Surveys from 2013-2016. The data gathered includes the variable `Obese`, which indicates whether an individual classes themselves as obese, and the following other lifestyle and socio-economic factors:
 
--   `AgeGroup` - The age range of the individual
+-   `AgeGroup` - The age range of the individual.
 
--   `Sex` - The sex of an individual (Male or Female)
+-   `Sex` - The sex of an individual (Male or Female).
 
--   `Employment` - The individuals employment status
+-   `Employment` - The individual's employment status.
 
--   `Veg` - Indicates whether the individual consumes vegetables (Yes/No)
+-   `Veg` - Indicates whether the individual consumes the recommended daily intake of vegetables (Yes/No).
 
--   `Fruit` - Indicates whether the individual consumes fruit (Yes/No)
+-   `Fruit` - Indicates whether the individual consumes the recommended daily intake of fruit (Yes/No).
 
--   `Year` - The year in which the Scottish Health Survey was conducted
+-   `Year` - The year in which the Scottish Health Survey was conducted.
 
-The main focus of this report will be to examine the prevalence of obesity in Scotland over the years this survey was conducted and to examine differences in obesity by the other lifestyle and socio-economic factors.
+The main focus of this report will be to examine the prevalence of obesity in Scotland over the given years and to examine differences in obesity by age, sex and the other lifestyle and socio-economic factors.
 
-# Exploratory Analysis {#exploranalysis}
+@sec-exploranalysis consists of an exploratory analysis of the obesity data and explores the potential relationship between factors. @sec-formalanalysis contains the results from fitting a logistic regression model to the data, as well as the assessment of the model assumptions. Concluding remarks are given in @sec-conclusion.
+
+# Exploratory Analysis {#sec-exploranalysis}
 
 @fig-bar1 displays the relationship between variables `Obesity` and `Year` revealing the prevalence of obesity in Scotland over the given years of the Scottish Health Survey. From @fig-bar1, we can see that, on average, there was not much change in the recorded number of obese individuals in Scotland by year from 2013 to 2016. We observe a slightly smaller count in 2016 compared to the previous three years, but it appears that `Year` is not a significant explanatory variable.
 
@@ -143,7 +145,7 @@ ggplot(obesity_sub, aes(x = Employment, group = Obese)) +
 
 ```
 
-# Formal Analysis {#formalanalysis}
+# Formal Analysis {#sec-formalanalysis}
 
 ```{r}
 #| echo: false
@@ -159,7 +161,7 @@ obesity$Fruit <- as.factor(obesity$Fruit)
 obesity$Obese <- as.factor(obesity$Obese)
 ```
 
-To answer our first question of interest, we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in @fig-GLMyear match our assumptions from @fig-bar1: we can conclude that year has no significant effect on obesity in Scotland.
+To analyse the prevalence of obesity over the given years, we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in @fig-GLMyear match our assumptions from @fig-bar1: we can conclude that year has no significant effect on obesity in Scotland.
 
 ```{r}
 #| echo: false
@@ -174,7 +176,7 @@ coefficents.year <- year.model |>
 knitr::kable(coefficents.year)
 ```
 
-Now we go ahead and fit a model to be able to find a relationship between obesity and lifestyle and socio-economic factors. The `Year` and `Fruit` variables are not included in our initial fit of the model because from the exploratory analysis these variables do not appear to impact obesity. The `StepAIC` function from the `MASS` package is then used to fit the model with the lowest AIC.
+Now we go ahead and fit a model in order to explore further the relationship between obesity and our other variables. The `Year` and `Fruit` variables are not included in our initial fit of the model because from the exploratory analysis these variables do not appear to impact obesity. The `StepAIC` function from the `MASS` package is then used to fit the model with the lowest AIC.
 
 ```{r}
 #| echo: false
@@ -197,7 +199,8 @@ coefficents.final <- final.model |>
 knitr::kable(coefficents.final)
 ```
 
-From our model we can draw multiple conclusions.
+From our model we can draw multiple conclusions...
 
-# Conclusion {#conclusion}
+## Assessing model assumptions
 
+# Conclusion {#sec-conclusion}
