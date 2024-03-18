@@ -3051,7 +3051,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>We also observe the relationship between <code>Obesity</code> and different lifestyle factors (whether or not the individual consumes the recommended daily intake of fruit or vegetables) in <a href="#fig-bar3">Figure 3</a>. Obesity seems to be more prevalent in those who did consume the recommended daily intake of fruit or veg compared to those who didn’t.</p>
+<p>We also observe the relationship between <code>Obesity</code> and different lifestyle factors (whether or not the individual consumes the recommended daily intake of fruit or vegetables) in <a href="#fig-bar3">Figure 3</a>. Obesity seems to be more prevalent in those who did consume the recommended daily intake of fruit or veg compared to those who didn’t. However, there is little to no difference between the proportion of obese people and not obese people, so these variables (<code>Fruit</code> in particular) seem insignificant at this stage.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-bar3" class="quarto-figure quarto-figure-center anchored">
@@ -3125,7 +3125,7 @@ vertical-align: -.125em;
 </figure>
 </div>
 </div>
-<p>Now we go ahead and fit a model in order to explore further the relationship between obesity and our other variables. The <code>Year</code> and <code>Fruit</code> variables are not included in our initial fit of the model because from the exploratory analysis these variables do not appear to impact obesity. The <code>StepAIC</code> function from the <code>MASS</code> package is then used to fit the model with the lowest AIC.</p>
+<p>Now we go ahead and fit a model in order to analyse the relationship between obesity and our other variables. The <code>Year</code> and <code>Fruit</code> variables are not included in our initial fit of the model: our exploratory analysis concluded that these variables do not appear to impact obesity. The <code>StepAIC</code> function from the <code>MASS</code> package is then used to fit the model with the lowest AIC, the output of which is displayed in <a href="#fig-GLMfull">Figure 6</a>.</p>
 <div class="cell">
 <div id="fig-GLMfull" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -3338,7 +3338,7 @@ vertical-align: -.125em;
 </tr>
 </tbody>
 </table>
-<figcaption class="figure-caption">Figure 6: Best fitting GLM model.</figcaption>
+<figcaption class="figure-caption">Figure 6: Best fitting GLM.</figcaption>
 </figure>
 </div>
 </div>

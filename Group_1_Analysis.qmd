@@ -103,7 +103,7 @@ p2 <- ggplot(obesity, aes(x = Sex, group = Obese)) +
 p1+p2+plot_layout(ncol = 2)
 ```
 
-We also observe the relationship between `Obesity` and different lifestyle factors (whether or not the individual consumes the recommended daily intake of fruit or vegetables) in @fig-bar3. Obesity seems to be more prevalent in those who did consume the recommended daily intake of fruit or veg compared to those who didn't.
+We also observe the relationship between `Obesity` and different lifestyle factors (whether or not the individual consumes the recommended daily intake of fruit or vegetables) in @fig-bar3. Obesity seems to be more prevalent in those who did consume the recommended daily intake of fruit or veg compared to those who didn't. However, there is little to no difference between the proportion of obese people and not obese people, so these variables (`Fruit` in particular) seem insignificant at this stage.
 
 ```{r}
 #| echo: false
@@ -176,7 +176,7 @@ coefficents.year <- year.model |>
 knitr::kable(coefficents.year)
 ```
 
-Now we go ahead and fit a model in order to explore further the relationship between obesity and our other variables. The `Year` and `Fruit` variables are not included in our initial fit of the model because from the exploratory analysis these variables do not appear to impact obesity. The `StepAIC` function from the `MASS` package is then used to fit the model with the lowest AIC.
+Now we go ahead and fit a model in order to analyse the relationship between obesity and our other variables. The `Year` and `Fruit` variables are not included in our initial fit of the model: our exploratory analysis concluded that these variables do not appear to impact obesity. The `StepAIC` function from the `MASS` package is then used to fit the model with the lowest AIC, the output of which is displayed in @fig-GLMfull.
 
 ```{r}
 #| echo: false
@@ -192,7 +192,7 @@ final.model <- stepAIC(init.model,direction = "both", trace = FALSE)
 #| warning: false
 #| message: false
 #| label: fig-GLMfull
-#| fig-cap: Best fitting GLM model.
+#| fig-cap: Best fitting GLM.
 coefficents.final <- final.model |> 
   summary() |> 
   coef()
