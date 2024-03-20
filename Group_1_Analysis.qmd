@@ -248,7 +248,7 @@ In order to examine ranges of plausible log-odds of obesity for each of the pred
 
 @fig-GLMfull shows the 95% confidence intervals for each regression parameter included in the fitted model. For example, we are 95% confident that the log-odds of an individual being obese is, on average, 0.078 to 0.252 lower if the individual eats vegetables.
 
-Finally, to see if our model predicts as we would expect it to, we produce plots of the probability of an individual self-evaluating as obese by the various lifestyle and socio-conomic factors. These plots are displayed in @fig-probs1 . From the plots it is clear that the probabilities of an individual being obese vary by these factors and, in fact, these probabilities match our analysis in @sec-exploranalysis.
+Finally, to see if our model predicts as we would expect it to, we produce plots of the probability that an individual self-evaluates as obese by the various lifestyle and socio-economic factors. These plots are displayed in @fig-probs1 . From the plots it is clear that the probabilities of an individual being obese vary by these factors and, in fact, these probabilities match our analysis in @sec-exploranalysis. For example, we observe that the probability of an individual being obese is higher for females than males and the probability of obesity is lowest in the youngest age group, followed by the oldest.
 
 ```{r}
 #| echo: false
@@ -273,3 +273,9 @@ sex_plot+age_plot+Employment_plot+Veg_Plot+plot_layout(nrow=2,ncol = 2)
 ## Assessing model assumptions
 
 # Conclusion {#sec-conclusion}
+
+Obesity prevalence has shown little change between 2013 and 2016. Obesity was found to differ by sex, age, and socio-economic and lifestyle factors. In particular, we found that obesity was less common in those who consumed the recommended daily intake of vegetables, but the consumption of fruit by an individual was not a significant predictor for obesity.
+
+We also observed an interaction between an indivual's sex and age. There appeared to be an increase in the odds of an individual evaluating as obese in every category compared to females in the youngest age group. The highest average increase in the odds was observed in males aged 55-64. So we conclude that females aged 16-24 have the lowest odds of being obese.
+
+In terms of socio-economic factors, we can see that there was an increase of 1.56 in the odds of evaluating as obese among those permanently unable to work compared to those "doing something else". These odds are the highest among all employment-statuses given.

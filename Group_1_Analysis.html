@@ -3492,7 +3492,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <p>Where, <span class="math inline">\(\mathbb{I}\)</span> is an indicator function and <span class="math inline">\(p = \text{Prob}(\text{Obese})\)</span>. <strong>?@eq-fittedmodel</strong> highlights how the log-odds of an obese individual change by the various lifestyle and socio-economic factors. This gives us estimates for the log-odds, and therefore odds, for each individual in the survey.</p>
 <p>In order to examine ranges of plausible log-odds of obesity for each of the predictors in <strong>?@eq-fittedmodel</strong>, we can observe the 95% confidence interval bounds given in <a href="#fig-GLMfull">Figure 7</a> . Note that these confidence intervals also highlight significance of the parameters, which gives the same result as the conclusions reached from the p-values in <a href="#fig-GLMfull">Figure 7</a>.</p>
 <p><a href="#fig-GLMfull">Figure 7</a> shows the 95% confidence intervals for each regression parameter included in the fitted model. For example, we are 95% confident that the log-odds of an individual being obese is, on average, 0.078 to 0.252 lower if the individual eats vegetables.</p>
-<p>Finally, to see if our model predicts as we would expect it to, we produce plots of the probability of an individual self-evaluating as obese by the various lifestyle and socio-conomic factors. These plots are displayed in <a href="#fig-probs1">Figure 8</a> . From the plots it is clear that the probabilities of an individual being obese vary by these factors and, in fact, these probabilities match our analysis in <a href="#sec-exploranalysis">Section 2</a>.</p>
+<p>Finally, to see if our model predicts as we would expect it to, we produce plots of the probability that an individual self-evaluates as obese by the various lifestyle and socio-economic factors. These plots are displayed in <a href="#fig-probs1">Figure 8</a> . From the plots it is clear that the probabilities of an individual being obese vary by these factors and, in fact, these probabilities match our analysis in <a href="#sec-exploranalysis">Section 2</a>. For example, we observe that the probability of an individual being obese is higher for females than males and the probability of obesity is lowest in the youngest age group, followed by the oldest.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-probs1" class="quarto-figure quarto-figure-center anchored">
@@ -3509,6 +3509,9 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </section>
 <section id="sec-conclusion" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Conclusion</h1>
+<p>Obesity prevalence has shown little change between 2013 and 2016. Obesity was found to differ by sex, age, and socio-economic and lifestyle factors. In particular, we found that obesity was less common in those who consumed the recommended daily intake of vegetables, but the consumption of fruit by an individual was not a significant predictor for obesity.</p>
+<p>We also observed an interaction between an indivual’s sex and age. There appeared to be an increase in the odds of an individual evaluating as obese in every category compared to females in the youngest age group. The highest average increase in the odds was observed in males aged 55-64. So we conclude that females aged 16-24 have the lowest odds of being obese.</p>
+<p>In terms of socio-economic factors, we can see that there was an increase of 1.56 in the odds of evaluating as obese among those permanently unable to work compared to those “doing something else”. These odds are the highest among all employment-statuses given.</p>
 </section>
 
 </main>
