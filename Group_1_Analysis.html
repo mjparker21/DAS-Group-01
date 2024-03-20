@@ -8,7 +8,7 @@
 
 <meta name="author" content="Group 1">
 
-<title>An Analysis of Obesity Prevelance in Scotland (2013-2016)</title>
+<title>An Analysis of Obesity Prevelance in Scotland from 2013 to 2016</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3102,7 +3102,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">An Analysis of Obesity Prevelance in Scotland (2013-2016)</h1>
+<h1 class="title">An Analysis of Obesity Prevelance in Scotland from 2013 to 2016</h1>
 </div>
 
 
@@ -3153,7 +3153,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </div>
 </div>
 <p>In <a href="#fig-bar2">Figure 2</a> we observe the relationships between <code>Obesity</code> and <code>AgeGroup</code>, and <code>Obesity</code> and <code>Sex</code>. It is revealed that the obesity proportion is highest in the 55-64 age group and decreases as age decreases, as well as for an increase in age. The lowest obesity proportion is counted in the 16-24 age group.</p>
-<p>We can also see in <a href="#fig-bar2">Figure 2</a> that obesity appears slightly higher in females than in males.</p>
+<p>We can also see in <a href="#fig-bar2">Figure 2</a> that obesity appears slightly higher in females than in males. But within the categories we observe that more females are obese than not obese, while the opposite is true for males.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-bar2" class="quarto-figure quarto-figure-center anchored">
@@ -3186,7 +3186,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </div>
 </div>
 </div>
-<p>Finally <a href="#fig-bar5">Figure 5</a> is plotted to see if there is any relationship between <code>AgeGroup</code> and <code>Sex</code>. Initial inspection of <a href="#fig-bar5">Figure 5</a> highlights that there does seem to be some difference between proportions of <code>Sex</code> by <code>AgeGroup</code> between some of the age groups, so we may want to fit the interaction between these variables in our model.</p>
+<p>Finally, <a href="#fig-bar5">Figure 5</a> is plotted to see if there is any relationship between <code>AgeGroup</code> and <code>Sex</code>. Initial inspection of <a href="#fig-bar5">Figure 5</a> highlights that there does seem to be some difference between proportions of <code>Sex</code> by <code>AgeGroup</code> between some of the age groups, so we may want to fit the interaction between these variables in our model.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-bar5" class="quarto-figure quarto-figure-center anchored">
@@ -3200,7 +3200,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </section>
 <section id="sec-formalanalysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Formal Analysis</h1>
-<p>To analyse the prevalence of obesity over the given years, we produce a logistic regression model for <code>Obesity</code> by <code>Year</code>. The large p-values shown in <a href="#fig-GLMyear">Figure 6</a> match our assumptions from <a href="#fig-bar1">Figure 1</a>: we can conclude that year has no significant effect on obesity in Scotland.</p>
+<p>To analyse the prevalence of obesity over the given years, we produce a logistic regression model for <code>Obesity</code> by <code>Year</code>. The large p-values shown in <a href="#fig-GLMyear">Figure 6</a> match our assumptions from <a href="#fig-bar1">Figure 1</a>: we can conclude that year has no statistically significant effect on obesity in Scotland.</p>
 <div class="cell">
 <div id="fig-GLMyear" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -3245,12 +3245,12 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </tr>
 </tbody>
 </table>
-<figcaption class="figure-caption">Figure 6: GLM with Year as explanatory variable.</figcaption>
+<figcaption class="figure-caption">Figure 6: Summary of GLM outputs with Year as explanatory variable.</figcaption>
 </figure>
 </div>
 </div>
-<p>Now we go ahead and fit a model in order to analyse the relationship between obesity and our other variables. The <code>Year</code> and <code>Fruit</code> variables are not included in our initial fit of the model: our exploratory analysis concluded that these variables do not appear to impact obesity. Also, there does not appear to be any interaction between sex and employment so we remove this interaction from the final model. The <code>StepAIC</code> function from the <code>MASS</code> package is then used to fit the model with the lowest AIC, the output of which is displayed in <a href="#fig-GLMfull">Figure 7</a>.</p>
-<p>Since the baseline category for our response (<code>Obese</code>) is “No”, the estimates from our fitted logistic regression model are for changes in the log-odds for individuals that answered “Yes” to the obesity self evaluation compared with the log-odds of those who answered “No”.</p>
+<p>Now we go ahead and fit a model in order to analyse the relationship between obesity and our other variables. The <code>Year</code> and <code>Fruit</code> variables are not included in our initial fit of the model: our exploratory analysis revealed that these variables do not appear to impact obesity. Also, there does not appear to be any interaction between an individual’s sex and their employment status, so we remove this interaction from the final model. The <code>StepAIC</code> function from the <code>MASS</code> package is then used to fit the model with the lowest AIC, the output of which is displayed in <a href="#fig-GLMfull">Figure 7</a>.</p>
+<p>Since the baseline category for our response (<code>Obese</code>) is “No”, the estimates from our fitted logistic regression model are for changes in the log-odds for individuals that answered “Yes” to the obesity self-evaluation compared with the log-odds of those who answered “No”.</p>
 <div class="cell">
 <div id="fig-GLMfull" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -3467,7 +3467,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </tr>
 </tbody>
 </table>
-<figcaption class="figure-caption">Figure 7: Summary of regression coefficients for the final model</figcaption>
+<figcaption class="figure-caption">Figure 7: Summary of GLM outputs for the final model.</figcaption>
 </figure>
 </div>
 </div>
@@ -3488,7 +3488,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
   \end{aligned}
 \end{equation*}\]</span>
 <p>Where, <span class="math inline">\(\mathbb{I}\)</span> is an indicator function and <span class="math inline">\(p = \text{Prob}(\text{Obese})\)</span>. The equation above highlights how the log-odds of an obese individual change by the various lifestyle and socio-economic factors. This gives us estimates for the log-odds, and therefore odds, for each individual in the survey.</p>
-<p>In order to examine ranges of plausible log-odds of obesity for each of the predictors in the fitted model equation, we can observe the 95% confidence interval bounds given in <a href="#fig-GLMfull">Figure 7</a> . Note that these confidence intervals also highlight significance of the parameters, which gives the same result as the conclusions reached from the p-values in <a href="#fig-GLMfull">Figure 7</a>.</p>
+<p>In order to examine ranges of plausible log-odds of obesity for each of the predictors in the fitted model equation, we can observe the 95% confidence interval bounds given in <a href="#fig-GLMfull">Figure 7</a> . Note that these confidence intervals also highlight significance of the parameters, which solidify the conclusions reached from the p-values in <a href="#fig-GLMfull">Figure 7</a>.</p>
 <p><a href="#fig-GLMfull">Figure 7</a> shows the 95% confidence intervals for each regression parameter included in the fitted model. For example, we are 95% confident that the log-odds of an individual being obese is, on average, 0.078 to 0.252 lower if the individual eats vegetables.</p>
 <section id="assessing-model-assumptions" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="assessing-model-assumptions"><span class="header-section-number">3.1</span> Assessing model assumptions</h2>
@@ -3497,7 +3497,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <section id="sec-conclusion" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Conclusion</h1>
 <p>Obesity prevalence has shown little change between 2013 and 2016. Obesity was found to differ by sex, age, and socio-economic and lifestyle factors. In particular, we found that obesity was less common in those who consumed the recommended daily intake of vegetables, but the consumption of fruit by an individual was not a significant predictor for obesity.</p>
-<p>We also observed an interaction between an indivual’s sex and age. There appeared to be an increase in the odds of an individual evaluating as obese in every category compared to females in the youngest age group. The highest average increase in the odds was observed in males aged 55-64. So we conclude that females aged 16-24 have the lowest odds of being obese.</p>
+<p>We also observed an interaction between an individual’s sex and age. There appeared to be an increase in the odds of an individual evaluating as obese in every category compared to females in the youngest age group. The highest average increase in the odds was observed in males aged 55-64. So we conclude that females aged 16-24 have the lowest odds of being obese.</p>
 <p>In terms of socio-economic factors, we can see that there was an increase of 1.56 in the odds of evaluating as obese among those permanently unable to work compared to those “doing something else”. These odds are the highest among all employment-statuses given.</p>
 </section>
 

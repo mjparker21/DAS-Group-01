@@ -1,5 +1,5 @@
 ---
-title: "An Analysis of Obesity Prevelance in Scotland (2013-2016)"
+title: "An Analysis of Obesity Prevelance in Scotland from 2013 to 2016"
 author: "Group 1 "
 execute: 
   echo: false
@@ -81,7 +81,7 @@ ggplot(obesity, aes(x = Year, group = Obese)) +
 
 In @fig-bar2 we observe the relationships between `Obesity` and `AgeGroup`, and `Obesity` and `Sex`. It is revealed that the obesity proportion is highest in the 55-64 age group and decreases as age decreases, as well as for an increase in age. The lowest obesity proportion is counted in the 16-24 age group.
 
-We can also see in @fig-bar2 that obesity appears slightly higher in females than in males.
+We can also see in @fig-bar2 that obesity appears slightly higher in females than in males. But within the categories we observe that more females are obese than not obese, while the opposite is true for males.
 
 ```{r}
 #| echo: false
@@ -147,7 +147,7 @@ ggplot(obesity_sub, aes(x = Employment, group = Obese)) +
 
 ```
 
-Finally @fig-bar5 is plotted to see if there is any relationship between `AgeGroup` and `Sex`. Initial inspection of @fig-bar5 highlights that there does seem to be some difference between proportions of `Sex` by `AgeGroup` between some of the age groups, so we may want to fit the interaction between these variables in our model.
+Finally, @fig-bar5 is plotted to see if there is any relationship between `AgeGroup` and `Sex`. Initial inspection of @fig-bar5 highlights that there does seem to be some difference between proportions of `Sex` by `AgeGroup` between some of the age groups, so we may want to fit the interaction between these variables in our model.
 
 ```{r}
 #| echo: false
@@ -180,14 +180,14 @@ obesity$Fruit <- as.factor(obesity$Fruit)
 obesity$Obese <- as.factor(obesity$Obese)
 ```
 
-To analyse the prevalence of obesity over the given years, we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in @fig-GLMyear match our assumptions from @fig-bar1: we can conclude that year has no significant effect on obesity in Scotland.
+To analyse the prevalence of obesity over the given years, we produce a logistic regression model for `Obesity` by `Year`. The large p-values shown in @fig-GLMyear match our assumptions from @fig-bar1: we can conclude that year has no statistically significant effect on obesity in Scotland.
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 #| label: fig-GLMyear
-#| fig-cap: GLM with Year as explanatory variable.
+#| fig-cap: Summary of GLM outputs with Year as explanatory variable.
 year.model <- glm(Obese ~ Year, data=obesity, family = "binomial")
 coefficents.year <- year.model |> 
   summary() |> 
@@ -195,9 +195,9 @@ coefficents.year <- year.model |>
 knitr::kable(coefficents.year)
 ```
 
-Now we go ahead and fit a model in order to analyse the relationship between obesity and our other variables. The `Year` and `Fruit` variables are not included in our initial fit of the model: our exploratory analysis concluded that these variables do not appear to impact obesity. Also, there does not appear to be any interaction between sex and employment so we remove this interaction from the final model. The `StepAIC` function from the `MASS` package is then used to fit the model with the lowest AIC, the output of which is displayed in @fig-GLMfull.
+Now we go ahead and fit a model in order to analyse the relationship between obesity and our other variables. The `Year` and `Fruit` variables are not included in our initial fit of the model: our exploratory analysis revealed that these variables do not appear to impact obesity. Also, there does not appear to be any interaction between an individual's sex and their employment status, so we remove this interaction from the final model. The `StepAIC` function from the `MASS` package is then used to fit the model with the lowest AIC, the output of which is displayed in @fig-GLMfull.
 
-Since the baseline category for our response (`Obese`) is "No", the estimates from our fitted logistic regression model are for changes in the log-odds for individuals that answered "Yes" to the obesity self evaluation compared with the log-odds of those who answered "No".
+Since the baseline category for our response (`Obese`) is "No", the estimates from our fitted logistic regression model are for changes in the log-odds for individuals that answered "Yes" to the obesity self-evaluation compared with the log-odds of those who answered "No".
 
 ```{r}
 #| echo: false
@@ -213,7 +213,7 @@ final.model <- stepAIC(init.model,direction = "both", trace = FALSE)
 #| warning: false
 #| message: false
 #| label: fig-GLMfull
-#| fig-cap: Summary of regression coefficients for the final model
+#| fig-cap: Summary of GLM outputs for the final model.
 reg.table <- final.model |> summary() |> coef()
 reg.table <- as.data.frame(reg.table)
 mod.final.lower <- reg.table$Estimate - (1.96 * reg.table$`Std. Error`)
@@ -243,7 +243,7 @@ knitr::kable(reg.table)
 ```
 Where, $\mathbb{I}$ is an indicator function and $p = \text{Prob}(\text{Obese})$. The equation above highlights how the log-odds of an obese individual change by the various lifestyle and socio-economic factors. This gives us estimates for the log-odds, and therefore odds, for each individual in the survey.
 
-In order to examine ranges of plausible log-odds of obesity for each of the predictors in the fitted model equation, we can observe the 95% confidence interval bounds given in @fig-GLMfull . Note that these confidence intervals also highlight significance of the parameters, which gives the same result as the conclusions reached from the p-values in @fig-GLMfull.
+In order to examine ranges of plausible log-odds of obesity for each of the predictors in the fitted model equation, we can observe the 95% confidence interval bounds given in @fig-GLMfull . Note that these confidence intervals also highlight significance of the parameters, which solidify the conclusions reached from the p-values in @fig-GLMfull.
 
 @fig-GLMfull shows the 95% confidence intervals for each regression parameter included in the fitted model. For example, we are 95% confident that the log-odds of an individual being obese is, on average, 0.078 to 0.252 lower if the individual eats vegetables.
 
@@ -253,6 +253,6 @@ In order to examine ranges of plausible log-odds of obesity for each of the pred
 
 Obesity prevalence has shown little change between 2013 and 2016. Obesity was found to differ by sex, age, and socio-economic and lifestyle factors. In particular, we found that obesity was less common in those who consumed the recommended daily intake of vegetables, but the consumption of fruit by an individual was not a significant predictor for obesity.
 
-We also observed an interaction between an indivual's sex and age. There appeared to be an increase in the odds of an individual evaluating as obese in every category compared to females in the youngest age group. The highest average increase in the odds was observed in males aged 55-64. So we conclude that females aged 16-24 have the lowest odds of being obese.
+We also observed an interaction between an individual's sex and age. There appeared to be an increase in the odds of an individual evaluating as obese in every category compared to females in the youngest age group. The highest average increase in the odds was observed in males aged 55-64. So we conclude that females aged 16-24 have the lowest odds of being obese.
 
 In terms of socio-economic factors, we can see that there was an increase of 1.56 in the odds of evaluating as obese among those permanently unable to work compared to those "doing something else". These odds are the highest among all employment-statuses given.
