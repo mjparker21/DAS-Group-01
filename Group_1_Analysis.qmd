@@ -225,19 +225,18 @@ knitr::kable(reg.table)
 ```{=tex}
 \begin{equation*}
   \begin{aligned}
-    \ln\left(\frac{p}{1-p}\right) = -0.165\cdot\mathbb{I}_\text{Veg} -0.569\cdot\mathbb{I}_\text{Male}  -0.291\cdot\mathbb{I}_\text{Full-time Employment} \\
-    
--0.032\cdot\mathbb{I}_\text{In Paid Employment/Self Employed/Govt Training} 
-+0.375\cdot\mathbb{I}_\text{Looking after home/family}+ 0.248\cdot\mathbb{I}_\text{Looking for/Intending to look for work} \\
+    \ln\left(\frac{p}{1-p}\right) &= -0.165\cdot\mathbb{I}_\text{Veg} -0.569\cdot\mathbb{I}_\text{Male}  -0.291\cdot\mathbb{I}_\text{Full-time Employment} \\
+    &-0.032\cdot\mathbb{I}_\text{In Paid Employment/Self Employed/Govt Training} 
++0.375\cdot\mathbb{I}_\text{Looking after home/family} \\
 
-+0.443\cdot\mathbb{I}_\text{Perm unable to work} + 0.049\cdot\mathbb{I}_\text{Retired} +0.308\cdot\mathbb{I}_\text{25-34} \\
+&+ 0.248\cdot\mathbb{I}_\text{Looking for/Intending to look for work} +0.443\cdot\mathbb{I}_\text{Perm unable to work} + 0.049\cdot\mathbb{I}_\text{Retired} \\ 
 
-+0.511\cdot\mathbb{I}_\text{35-44} +0.632\cdot\mathbb{I}_\text{45-54} + 0.618\cdot\mathbb{I}_\text{55-64} + 0.775\cdot\mathbb{I}_\text{65-74} \\ 
+&+0.308\cdot\mathbb{I}_\text{25-34} +0.511\cdot\mathbb{I}_\text{35-44} +0.632\cdot\mathbb{I}_\text{45-54} + 0.618\cdot\mathbb{I}_\text{55-64} + 0.775\cdot\mathbb{I}_\text{65-74} \\ 
 
-+0.562\cdot\mathbb{I}_\text{75+}+ 0.312\cdot\mathbb{I}_\text{Male and 25-34} + 0.348\cdot\mathbb{I}_\text{Male and 35-44} \\
+&+0.562\cdot\mathbb{I}_\text{75+}+ 0.312\cdot\mathbb{I}_\text{Male and 25-34} + 0.348\cdot\mathbb{I}_\text{Male and 35-44} + 0.500\cdot\mathbb{I}_\text{Male and 45-54} \\
 
-+ 0.500\cdot\mathbb{I}_\text{Male and 45-54} + 0.723\cdot\mathbb{I}_\text{Male and 55-64}
-+ 0.571\cdot\mathbb{I}_\text{Male and 65-74} + 0.237\cdot\mathbb{I}_\text{Male and 75+} \\
+
+&+ 0.723\cdot\mathbb{I}_\text{Male and 55-64} + 0.571\cdot\mathbb{I}_\text{Male and 65-74} + 0.237\cdot\mathbb{I}_\text{Male and 75+} \\
 
   \end{aligned}
 \end{equation*}
@@ -250,26 +249,6 @@ We now wish to examine ranges of plausible log-odds of obesity for each of the p
 
 Finally, to see if our model predicts as we would expect it to we produce plots of the probability of an individual self-evaluation as obese by the various lifestyle and socio-conomic factors. @fig-probs1 shows these produced plots. From the plots it is clear that the probabilities of an individual being obese clearly vary by these factors and in fact, these probabilities matched what we saw from our plots in @sec-exploranalysis.
 
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-#| label: fig-probs1
-#| fig-cap: Predicted probabilities of Obese self-evaultion by Ligestyle and socio-economic factors
-#| fig-align: center
-#| fig-height: 3.5
-
-sex_plot <- plot_model(final.model, type = "pred", terms = "Sex", axis.title = c("Sex", "Prob. of Obese self-evaluation"), title = " ")
-
-age_plot <- plot_model(final.model, type = "pred", terms = "AgeGroup", axis.title = c("Age Group of individual", "Prob. of Obese self-evaluation"), title = " ")
-
-Employment_plot <- plot_model(final.model, type = "pred", terms = "Employment", axis.title = c("Employment Group", "Employment Catagory"), title = " ", wrap.labels = 10 )
-
-Veg_Plot <- plot_model(final.model, type = "pred", terms = "Veg", axis.title = c("Veg", "Prob. of Obese self-evaluation"), title = " ")
-
-sex_plot+age_plot+Employment_plot+Veg_Plot+plot_layout(nrow=2,ncol = 2)
-```
-
-## Assessing model assumptions
+##  Assessing model assumptions
 
 # Conclusion {#sec-conclusion}
