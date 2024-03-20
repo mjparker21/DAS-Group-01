@@ -248,8 +248,6 @@ In order to examine ranges of plausible log-odds of obesity for each of the pred
 
 @fig-GLMfull shows the 95% confidence intervals for each regression parameter included in the fitted model. For example, we are 95% confident that the log-odds of an individual being obese is, on average, 0.078 to 0.252 lower if the individual eats vegetables.
 
-Finally, to see if our model predicts as we would expect it to, we produce plots of the probability that an individual self-evaluates as obese by the various lifestyle and socio-economic factors. These plots are displayed in @fig-probs1 . From the plots it is clear that the probabilities of an individual being obese vary by these factors and, in fact, these probabilities match our analysis in @sec-exploranalysis. For example, we observe that the probability of an individual being obese is higher for females than males and the probability of obesity is lowest in the youngest age group, followed by the oldest.
-
 ## Assessing model assumptions
 
 # Conclusion {#sec-conclusion}
