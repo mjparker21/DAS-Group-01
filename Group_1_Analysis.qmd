@@ -198,8 +198,8 @@ coefficents.final <- final.model |>
   coef()
 knitr::kable(coefficents.final)
 ```
+@fig-GLMfull shows `Sex` , `AgeGroup` and `Veg` all have low p-values indicating that these variables are significant when predicting if an individual is obese. By observing the p-values for the 7 `Employment` catagories, "EmploymentPerm unable to work" and "EmploymentLooking for/intending to look for paid work" also have low p-values, again indicating that these are both significant when predicting if an individual is obese. The other `Employment` categories all present high p-values and are therefore not significant in regards to determining obeasity. Overall there are differences for `Sex` , `Agegroup` , `Veg` and `Employment` as shown by the given p-values. As previously established `Fruit` and `Year` do not have an significant difference in an individual having being obese.
 
-From our model we can draw multiple conclusions...
 
 ## Assessing model assumptions
 
