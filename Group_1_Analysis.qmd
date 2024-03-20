@@ -223,7 +223,6 @@ knitr::kable(reg.table)
 @fig-GLMfull shows each of the parameters that are included in the final model. The selected model with the lowest AIC includes variables `Veg`, `Sex`, `Employment`, `AgeGroup` and an interaction term between `Sex` and `Agegroup`. The equation for the full fitted model is formally written below:
 
 ```{=tex}
-
 \begin{equation*}
   \begin{aligned}
     \ln\left(\frac{p}{1-p}\right) &= -0.165\cdot\mathbb{I}_\text{Veg} -0.569\cdot\mathbb{I}_\text{Male}  -0.291\cdot\mathbb{I}_\text{Full-time Employment} \\
@@ -236,9 +235,7 @@ knitr::kable(reg.table)
 
 &+0.562\cdot\mathbb{I}_\text{75+}+ 0.312\cdot\mathbb{I}_\text{Male and 25-34} + 0.348\cdot\mathbb{I}_\text{Male and 35-44} + 0.500\cdot\mathbb{I}_\text{Male and 45-54} \\
 
-
 &+ 0.723\cdot\mathbb{I}_\text{Male and 55-64} + 0.571\cdot\mathbb{I}_\text{Male and 65-74} + 0.237\cdot\mathbb{I}_\text{Male and 75+} \\
-
   \end{aligned}
 \end{equation*}
 ```

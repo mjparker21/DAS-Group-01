@@ -3580,6 +3580,21 @@ Figure 7: Summary of regression coefficients for the final model
 </div>
 </div>
 <p><a href="#fig-GLMfull" class="quarto-xref">Figure 7</a> shows each of the parameters that are included in the final model. The selected model with the lowest AIC includes variables <code>Veg</code>, <code>Sex</code>, <code>Employment</code>, <code>AgeGroup</code> and an interaction term between <code>Sex</code> and <code>Agegroup</code>. The equation for the full fitted model is formally written below:</p>
+<span class="math display">\[\begin{equation*}
+  \begin{aligned}
+    \ln\left(\frac{p}{1-p}\right) &amp;= -0.165\cdot\mathbb{I}_\text{Veg} -0.569\cdot\mathbb{I}_\text{Male}  -0.291\cdot\mathbb{I}_\text{Full-time Employment} \\
+    &amp;-0.032\cdot\mathbb{I}_\text{In Paid Employment/Self Employed/Govt Training}
++0.375\cdot\mathbb{I}_\text{Looking after home/family} \\
+
+&amp;+ 0.248\cdot\mathbb{I}_\text{Looking for/Intending to look for work} +0.443\cdot\mathbb{I}_\text{Perm unable to work} + 0.049\cdot\mathbb{I}_\text{Retired} \\
+
+&amp;+0.308\cdot\mathbb{I}_\text{25-34} +0.511\cdot\mathbb{I}_\text{35-44} +0.632\cdot\mathbb{I}_\text{45-54} + 0.618\cdot\mathbb{I}_\text{55-64} + 0.775\cdot\mathbb{I}_\text{65-74} \\
+
+&amp;+0.562\cdot\mathbb{I}_\text{75+}+ 0.312\cdot\mathbb{I}_\text{Male and 25-34} + 0.348\cdot\mathbb{I}_\text{Male and 35-44} + 0.500\cdot\mathbb{I}_\text{Male and 45-54} \\
+
+&amp;+ 0.723\cdot\mathbb{I}_\text{Male and 55-64} + 0.571\cdot\mathbb{I}_\text{Male and 65-74} + 0.237\cdot\mathbb{I}_\text{Male and 75+} \\
+  \end{aligned}
+\end{equation*}\]</span>
 <p>Where, <span class="math inline">\(\mathbb{I}\)</span> is an indicator function and <span class="math inline">\(p = \text{Prob}(\text{Obese})\)</span>. The equation above highlights how the log-odds of an obese individual change by the various lifestyle and socio-economic factors. This gives us estimates for the log-odds, and therefore odds, for each individual in the survey.</p>
 <p>In order to examine ranges of plausible log-odds of obesity for each of the predictors in the fitted model equation, we can observe the 95% confidence interval bounds given in <a href="#fig-GLMfull" class="quarto-xref">Figure 7</a> . Note that these confidence intervals also highlight significance of the parameters, which gives the same result as the conclusions reached from the p-values in <a href="#fig-GLMfull" class="quarto-xref">Figure 7</a>.</p>
 <p><a href="#fig-GLMfull" class="quarto-xref">Figure 7</a> shows the 95% confidence intervals for each regression parameter included in the fitted model. For example, we are 95% confident that the log-odds of an individual being obese is, on average, 0.078 to 0.252 lower if the individual eats vegetables.</p>
