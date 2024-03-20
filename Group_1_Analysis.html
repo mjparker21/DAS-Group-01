@@ -3206,14 +3206,14 @@ window.Quarto = {
 
 <section id="sec-intro" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>Obesity is a serious public health concern. Obesity occurs when an individual’s energy intake from food and drink is higher than the amount of energy needed over a period of time. Data has been gathered from the Scottish Health Surveys from 2013-2016. The data gathered includes the variable <code>Obese</code>, which indicates whether an individual classes themselves as obese, and the following other lifestyle and socio-economic factors:</p>
+<p>Obesity occurs when an individual’s energy intake from food and drink is higher than the amount of energy needed over a period of time, and is considered a serious public health concern. Data for this report has been gathered from the Scottish Health Surveys from 2013-2016. The data includes the binary variable, <code>Obese</code>, which indicates whether an individual classes themselves as obese (Yes), or not obese (No), and the following other lifestyle and socio-economic factors:</p>
 <ul>
-<li><p><code>AgeGroup</code> - The age range of the individual.</p></li>
-<li><p><code>Sex</code> - The sex of an individual (Male or Female).</p></li>
-<li><p><code>Employment</code> - The individual’s employment status.</p></li>
-<li><p><code>Veg</code> - Indicates whether the individual consumes the recommended daily intake of vegetables (Yes/No).</p></li>
-<li><p><code>Fruit</code> - Indicates whether the individual consumes the recommended daily intake of fruit (Yes/No).</p></li>
-<li><p><code>Year</code> - The year in which the Scottish Health Survey was conducted.</p></li>
+<li><p><code>AgeGroup</code> - The age range of the individual (a categorical variable with seven different age categories).</p></li>
+<li><p><code>Sex</code> - The sex of an individual (a binary variable with categories Male or Female).</p></li>
+<li><p><code>Employment</code> - The individual’s employment status (a categorical variable with seven different employment categories).</p></li>
+<li><p><code>Veg</code> - Indicates whether the individual consumes the recommended daily intake of vegetables (a binary variable with categories Yes or No).</p></li>
+<li><p><code>Fruit</code> - Indicates whether the individual consumes the recommended daily intake of fruit (a binary variable with categories Yes or No).</p></li>
+<li><p><code>Year</code> - The year in which the Scottish Health Survey was conducted (a categorical variable with categories corresponding to years 2013, 2014, 2015 and 2016).</p></li>
 </ul>
 <p>The main focus of this report will be to examine the prevalence of obesity in Scotland over the given years and to examine differences in obesity by age, sex and the other lifestyle and socio-economic factors.</p>
 <p><a href="#sec-exploranalysis" class="quarto-xref">Section 2</a> consists of an exploratory analysis of the obesity data and explores the potential relationship between factors. <a href="#sec-formalanalysis" class="quarto-xref">Section 3</a> contains the results from fitting a logistic regression model to the data, as well as the assessment of the model assumptions. Concluding remarks are given in <a href="#sec-conclusion" class="quarto-xref">Section 4</a>.</p>
