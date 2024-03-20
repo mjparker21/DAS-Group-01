@@ -127,7 +127,7 @@ v <- ggplot(obesity, aes(x = Veg, group = Obese)) +
 f+v+plot_layout(ncol = 2)
 ```
 
-Finally, the relationship between `Obesity` and `Employment` is revealed in @fig-bar4. The obesity proportion is clearly highest in employed individuals, followed by retirees, while the other factors appear to have very low proportions of obesity.
+The relationship between `Obesity` and `Employment` is revealed in @fig-bar4. The obesity proportion is clearly highest in employed individuals, followed by retirees, while the other factors appear to have very low proportions of obesity.
 
 ```{r}
 #| echo: false
@@ -140,6 +140,23 @@ Finally, the relationship between `Obesity` and `Employment` is revealed in @fig
 
 ggplot(obesity_sub, aes(x = Employment, group = Obese)) + 
   geom_bar(aes(y = after_stat(prop), fill = Obese), fill = "turquoise3", stat = "count", position = "dodge") +
+  labs(y = "Proportion") +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+```
+
+Finally @fig-bar5 is plotted to see if there is any relationship between `AgeGroup` and `Sex`. Initial inspection of @fig-bar5 highlights that there does seem to be some difference between proportions of `Sex` by `AgeGroup` between some of the age groups.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-bar5
+#| fig-cap: Relationship between Age and Sex. 
+#| fig-align: center
+#| fig-height: 3.5
+ggplot(obesity, aes(x = AgeGroup, y = after_stat(prop), fill = Sex, group = Sex)) + 
+  geom_bar(position = "dodge", stat = "count") +
   labs(y = "Proportion") +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
 
@@ -176,14 +193,16 @@ coefficents.year <- year.model |>
 knitr::kable(coefficents.year)
 ```
 
-Now we go ahead and fit a model in order to analyse the relationship between obesity and our other variables. The `Year` and `Fruit` variables are not included in our initial fit of the model: our exploratory analysis concluded that these variables do not appear to impact obesity. The `StepAIC` function from the `MASS` package is then used to fit the model with the lowest AIC, the output of which is displayed in @fig-GLMfull.
+Now we go ahead and fit a model in order to analyse the relationship between obesity and our other variables. The `Year` and `Fruit` variables are not included in our initial fit of the model: our exploratory analysis concluded that these variables do not appear to impact obesity. Also, there does not appear to be any interaction between sex and employment so we also remove this interaction from the final model. The `StepAIC` function from the `MASS` package is then used to fit the model with the lowest AIC, the output of which is displayed in @fig-GLMfull.
+
+Note that the baseline category for our response of obese is "No". This means that the estimates for our fitted logistic regression model are for changes in log-odds for people that answered "Yes" to a self evaluation of being obese against the baseline of a self-evaluation of "No".
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 obesity.sub2 <- obesity |> dplyr::select(Obese,Veg,Sex,Employment,AgeGroup)
-init.model <- glm(Obese~.^2, data = obesity.sub2, family = "binomial")
+init.model <- glm(Obese~.^2-Sex:Employment , data = obesity.sub2, family = "binomial")
 final.model <- stepAIC(init.model,direction = "both", trace = FALSE)
 ```
 
@@ -192,14 +211,64 @@ final.model <- stepAIC(init.model,direction = "both", trace = FALSE)
 #| warning: false
 #| message: false
 #| label: fig-GLMfull
-#| fig-cap: Best fitting GLM.
-coefficents.final <- final.model |> 
-  summary() |> 
-  coef()
-knitr::kable(coefficents.final)
+#| fig-cap: Summary of regression coefficients for the final model
+reg.table <- final.model |> summary() |> coef()
+reg.table <- as.data.frame(reg.table)
+mod.final.lower <- reg.table$Estimate - (1.96 * reg.table$`Std. Error`)
+mod.final.upper <- reg.table$Estimate + (1.96 * reg.table$`Std. Error`)
+reg.table <- reg.table |> mutate(Lower.Bound = mod.final.lower, Upper.Bound = mod.final.upper)
+knitr::kable(reg.table)
 ```
 
-From our model we can draw multiple conclusions...
+@fig-GLMfull shows each of the parameters that are included in the final model. The model selected by the `StepAIC` function includes `Veg` , `Sex` , `Employment` , `AgeGroup` and an interaction between `Sex` and `Agegroup` . The full fitted model is formally written below:
+
+```{=tex}
+\begin{equation*}
+  \begin{aligned}
+    \ln\left(\frac{p}{1-p}\right) = -0.165\cdot\mathbb{I}_\text{Veg} -0.569\cdot\mathbb{I}_\text{Male}  -0.291\cdot\mathbb{I}_\text{Full-time Employment} \\
+    
+-0.032\cdot\mathbb{I}_\text{In Paid Employment/Self Employed/Govt Training} 
++0.375\cdot\mathbb{I}_\text{Looking after home/family}+ 0.248\cdot\mathbb{I}_\text{Looking for/Intending to look for work} \\
+
++0.443\cdot\mathbb{I}_\text{Perm unable to work} + 0.049\cdot\mathbb{I}_\text{Retired} +0.308\cdot\mathbb{I}_\text{25-34} \\
+
++0.511\cdot\mathbb{I}_\text{35-44} +0.632\cdot\mathbb{I}_\text{45-54} + 0.618\cdot\mathbb{I}_\text{55-64} + 0.775\cdot\mathbb{I}_\text{65-74} \\ 
+
++0.562\cdot\mathbb{I}_\text{75+}+ 0.312\cdot\mathbb{I}_\text{Male and 25-34} + 0.348\cdot\mathbb{I}_\text{Male and 35-44} \\
+
++ 0.500\cdot\mathbb{I}_\text{Male and 45-54} + 0.723\cdot\mathbb{I}_\text{Male and 55-64}
++ 0.571\cdot\mathbb{I}_\text{Male and 65-74} + 0.237\cdot\mathbb{I}_\text{Male and 75+} \\
+
+  \end{aligned}
+\end{equation*}
+```
+Where, $\mathbb{I}$ is an indicator function and $p = \text{Prob}(\text{Obese})$. From @eq-fittedmodel it highlights how the log-odds of an individual self-evaluating as obese changes by the various lifestyle and socio-economic factors. This will then give us estimates for the log-odds, and therefore odds for each individual in the survey.
+
+We now wish to examine ranges of plausible log-odds of obesity for each of the predictors in @eq-fittedmodel computing 95% confidence intervals. Note that these confidence intervals will also highlight significance of the parameters, this will give the same result as the conclusion reached in @fig-GLMfull.
+
+@fig-CI shows the 95% confidence intervals for each regression parameter included in the fitted model. For example, we are 95% confident that the log-odds of an individual being obese is 0.078 to 0.252 lower if the individual eats vegetables.
+
+Finally, to see if our model predicts as we would expect it to we produce plots of the probability of an individual self-evaluation as obese by the various lifestyle and socio-conomic factors. @fig-probs1 shows these produced plots. From the plots it is clear that the probabilities of an individual being obese clearly vary by these factors and in fact, these probabilities matched what we saw from our plots in @sec-exploranalysis.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-probs1
+#| fig-cap: Predicted probabilities of Obese self-evaultion by Ligestyle and socio-economic factors
+#| fig-align: center
+#| fig-height: 3.5
+
+sex_plot <- plot_model(final.model, type = "pred", terms = "Sex", axis.title = c("Sex", "Prob. of Obese self-evaluation"), title = " ")
+
+age_plot <- plot_model(final.model, type = "pred", terms = "AgeGroup", axis.title = c("Age Group of individual", "Prob. of Obese self-evaluation"), title = " ")
+
+Employment_plot <- plot_model(final.model, type = "pred", terms = "Employment", axis.title = c("Employment Group", "Employment Catagory"), title = " ", wrap.labels = 10 )
+
+Veg_Plot <- plot_model(final.model, type = "pred", terms = "Veg", axis.title = c("Veg", "Prob. of Obese self-evaluation"), title = " ")
+
+sex_plot+age_plot+Employment_plot+Veg_Plot+plot_layout(nrow=2,ncol = 2)
+```
 
 ## Assessing model assumptions
 
