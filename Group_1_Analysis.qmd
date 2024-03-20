@@ -40,7 +40,9 @@ obesity <- read.csv("DAProject3.csv")
 
 # Introduction {#sec-intro}
 
-Obesity occurs when an individual's energy intake from food and drink is higher than the amount of energy needed over a period of time, and is considered a serious public health concern. Data for this report has been gathered from the Scottish Health Surveys from 2013-2016. The data includes the binary variable, `Obese`, which indicates whether an individual classes themselves as obese (Yes), or not obese (No), and the following other lifestyle and socio-economic factors:
+In the past few years, obesity has become a major public health problem worldwide, and obesity can induce a series of chronic diseases and conditions. Obesity occurs when an individual's energy intake from food and drink is higher than the amount of energy needed over a period of time. Exploring factors that influence obesity can help to develop effective intervention measures to reduce the number of obese people and reduce the impact on public health.
+
+Data for this report has been gathered from the Scottish Health Surveys from 2013-2016. The data includes the binary variable, `Obese`, which indicates whether an individual classes themselves as obese (Yes), or not obese (No), and the following other lifestyle and socio-economic factors:
 
 -   `AgeGroup` - The age range of the individual (a categorical variable with seven different age categories).
 
