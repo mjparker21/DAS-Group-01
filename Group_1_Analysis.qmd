@@ -287,3 +287,7 @@ Obesity prevalence has shown little change between 2013 and 2016. Obesity was fo
 We also observed an interaction between an individual's sex and age. There appeared to be an increase in the odds of an individual evaluating as obese in every category compared to females in the youngest age group. The highest average increase in the odds was observed in males aged 55-64. So we conclude that females aged 16-24 have the lowest odds of being obese.
 
 In terms of socio-economic factors, we can see that there was an increase of 1.56 in the odds of evaluating as obese among those permanently unable to work compared to those "doing something else". These odds are the highest among all employment-statuses given.
+
+## References
+
+[https://www.obesityactionscotland.org/media/235lfdxq/prevalence_causes\_\_impact_1920_data_f_2023_updated_version.pdf](https://www.obesityactionscotland.org/media/235lfdxq/prevalence_causes__impact_1920_data_f_2023_updated_version.pdf){#obesereport}
