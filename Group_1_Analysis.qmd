@@ -248,6 +248,36 @@ In order to examine ranges of plausible log-odds of obesity for each of the pred
 @fig-GLMfull shows the 95% confidence intervals for each regression parameter included in the fitted model. For example, we are 95% confident that the log-odds of an individual being obese is, on average, 0.078 to 0.252 lower if the individual eats vegetables.
 
 ## Assessing model assumptions
+Our model is a logistic regression, the assumptions made for this model are that we have constant variance and the errors are independent of one another. Our assumption of independence is already met as the individuals from our data set are independent of one another. Additionally, the assumption is made that our model does not have any influential observations which may alter the quality of our model, to check this we will first visuaslize the values of Cook's Distance
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-cook
+#| fig-cap: Cooks's distance value with 2 largest values labeled
+
+plot(final.model, which = 4 , id.n = 2)
+
+```
+
+From @fig-cook it can be seen there are 2 clear outlines but this does not necessarily indicate that they are influential. Now we will plot the standardized residuals of the model to see if these outlines deserve further attention.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-sr
+#| fig-cap: Plot of Standardized Residuals
+final = augment(final.model) %>% 
+  mutate(index =1:n())
+ggplot(final, aes(index, .std.resid)) +
+  geom_point(aes(color = Obese), alpha = 0.5) +
+  labs(y = "Standardized Residuals", x = "Index")
+
+```
+
+It can be seen from @fig-sr that the absolute values of our standardized residuals do not exceed 3, hence there are no influential observations within our data. Clearly from the plot of standardized residuals, there are no patterns which further indicates the errors for our model are independent. Additionally, it can be seen that the spread of these residuals remains constant and therefore the assumption of constant variance holds.
 
 # Conclusion {#sec-conclusion}
 
